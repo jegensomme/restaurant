@@ -1,26 +1,63 @@
 package ru.jegensomme.restaurant_service_system.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.List;
+
+@NamedQueries({
+        @NamedQuery(name = DishCategory.DELETE, query = "delete from  DishCategory dc where dc.id=:id")
+})
+@Entity
+@Table(name = "dish_categories")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class DishCategory extends AbstractNamedEntity {
 
-    protected Integer groupId;
+    public static final String DELETE = "DishCategory.delete";
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    protected DishCategory category;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private List<DishCategory> entry;
 
     public DishCategory() {
     }
 
-    public DishCategory(Integer id) {
-        super(id);
+    public DishCategory(DishCategory dishCategory) {
+        this(dishCategory.id, dishCategory.name, dishCategory.category);
     }
 
-    public DishCategory(Integer id, String name, Integer groupId) {
+    public DishCategory(Integer id, String name, DishCategory category) {
         super(id, name);
-        this.groupId = groupId;
+        this.category = category;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setCategory(DishCategory category) {
+        this.category = category;
     }
 
-    public Integer getGroupId() {
-        return groupId;
+    public DishCategory getCategory() {
+        return category;
+    }
+
+    public List<DishCategory> getEntry() {
+        return entry;
+    }
+
+    public void setEntry(List<DishCategory> entry) {
+        this.entry = entry;
+    }
+
+    @Override
+    public String toString() {
+        return "DishCategory{" +
+                "id=" + id +
+                ", name=" + name +
+                ", category=" + category +
+                '}';
     }
 }

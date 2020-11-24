@@ -17,7 +17,7 @@ public class Launcher extends Application {
 
     @Override
     public void init() {
-        context = new ClassPathXmlApplicationContext("classpath*:spring/spring-app.xml", "classpath*:spring/spring-db.xml");
+        context = new ClassPathXmlApplicationContext("classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml");
         stageLoader = context.getBean(SpringStageLoader.class);
     }
 

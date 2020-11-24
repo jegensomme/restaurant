@@ -2,6 +2,9 @@ package ru.jegensomme.restaurant_service_system.util;
 
 public class StringUtil {
 
+    private StringUtil() {
+    }
+
     public static boolean isNumber(String str) {
         try {
             Integer.parseInt(str);

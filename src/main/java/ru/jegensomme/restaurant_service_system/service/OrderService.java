@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.jegensomme.restaurant_service_system.model.Order;
+import ru.jegensomme.restaurant_service_system.model.Role;
+import ru.jegensomme.restaurant_service_system.model.User;
 import ru.jegensomme.restaurant_service_system.repository.OrderRepository;
+import ru.jegensomme.restaurant_service_system.repository.UserRepository;
 import ru.jegensomme.restaurant_service_system.util.ValidationUtil;
 
 import java.util.List;
@@ -14,11 +17,13 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OrderService {
 
-    OrderRepository repository;
+    private OrderRepository repository;
+    private UserRepository userRepository;
 
     @Autowired
-    public OrderService(OrderRepository repository) {
+    public OrderService(OrderRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -28,25 +33,34 @@ public class OrderService {
     }
 
     @Transactional
-    public void delete(int id, int managerId) {
-        ValidationUtil.checkNotFoundWithId(repository.delete(id, managerId), id);
+    public void delete(int id, int userId) {
+        checkAccess(userId);
+        ValidationUtil.checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    @Transactional
+    public void update(Order order, int userId) {
+        if (order.getUser().id() != userId) {
+            checkAccess(userId);
+        }
+        Assert.notNull(order, "order must not be null");
+        ValidationUtil.checkNotFoundWithId(repository.save(order, userId), order.id());
     }
 
     public Order get(int id) {
         return ValidationUtil.checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Transactional
-    public void update(Order order, int waiterId) {
-        Assert.notNull(order, "order must not be null");
-        ValidationUtil.checkNotFoundWithId(repository.save(order, waiterId), order.id());
-    }
-
     public List<Order> getAll() {
         return repository.getAll();
     }
 
-    public List<Order> getAllByWaiter(int waiterId) {
-        return repository.getAllByWaiter(waiterId);
+    public List<Order> getAllByUser(int userId) {
+        return repository.getAllByUser(userId);
+    }
+
+    private void checkAccess(int userId) {
+        User user = ValidationUtil.checkNotFoundWithId(userRepository.get(userId), userId);
+        ValidationUtil.checkAccess(!user.getRoles().contains(Role.MANAGER), userId);
     }
 }

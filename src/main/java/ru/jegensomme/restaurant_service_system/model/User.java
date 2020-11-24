@@ -7,11 +7,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "delete from User u where u.id=:id")
+})
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "key", name = "user_unique_key_idx")})
 public class User extends AbstractNamedEntity {
+
+    public static final String DELETE = "User.delete";
 
     @Column(name = "key", nullable = false, unique = true)
     @NotBlank
@@ -21,9 +27,15 @@ public class User extends AbstractNamedEntity {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserShift> shifts;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Order> orders;
 
     public User() {
     }
@@ -33,9 +45,7 @@ public class User extends AbstractNamedEntity {
     }
 
     public User(Integer id, String name, String key, Role role, Role... roles) {
-        super(id, name);
-        this.key = key;
-        this.roles = EnumSet.of(role, roles);
+        this(id, name, key, EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String key, Collection<Role> roles) {
@@ -60,9 +70,25 @@ public class User extends AbstractNamedEntity {
         return roles;
     }
 
+    public List<UserShift> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(List<UserShift> shifts) {
+        this.shifts = shifts;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
-        return "DishModifier{" +
+        return "User{" +
                 "id=" + id +
                 ", name=" + name +
                 ", key=" + key +

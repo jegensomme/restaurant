@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import ru.jegensomme.restaurant_service_system.model.Role;
 import ru.jegensomme.restaurant_service_system.model.User;
 import ru.jegensomme.restaurant_service_system.repository.UserRepository;
 import ru.jegensomme.restaurant_service_system.util.ValidationUtil;
@@ -14,7 +15,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserService {
 
-    UserRepository repository;
+    private UserRepository repository;
 
     @Autowired
     public UserService(UserRepository repository) {
@@ -49,5 +50,9 @@ public class UserService {
 
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    public List<User> getAllByRole(Role role) {
+        return repository.getAllByRole(role);
     }
 }

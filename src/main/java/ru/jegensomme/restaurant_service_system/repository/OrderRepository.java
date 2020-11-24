@@ -7,21 +7,13 @@ import java.util.List;
 
 public interface OrderRepository {
 
-    Order save(Order order, int waiterId);
+    Order save(Order order, int userId);
 
-    boolean delete(int id, int managerId);
+    boolean delete(int id);
 
     Order get(int id);
 
     List<Order> getAll();
 
-    List<Order> getAllByWaiter(int waiterId);
-
-    /*
-    List<Order> getAllByDate(LocalDate date);
-
-    List<Order> getAllByWaiter(int id);
-
-    List<Order> getAllByWaiterByDate(int id, LocalDate date);
-    */
+    List<Order> getAllByUser(int userId);
 }

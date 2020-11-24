@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.HomePaneController">
     <children>
         <BorderPane layoutY="3.0" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <bottom>
@@ -20,12 +21,12 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Открыть личную смену" GridPane.columnIndex="1">
+                                <Button fx:id="startShiftButton" mnemonicParsing="false" onAction="#startShift" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Открыть личную смену" GridPane.columnIndex="1">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Закрыть личную смену" GridPane.columnIndex="2">
+                                <Button fx:id="endShiftButton" disable="true" mnemonicParsing="false" onAction="#endShift" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Закрыть личную смену" GridPane.columnIndex="2">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
@@ -47,18 +48,18 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <TextField editable="false" prefHeight="50.0" prefWidth="280.0" text="ФИО" />
-                                <TextField editable="false" prefHeight="50.0" prefWidth="280.0" text="Должность" />
+                                <TextField fx:id="nameTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                                <TextField fx:id="roleTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <children>
-                                <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Заказы">
+                                <Button fx:id="ordersButton" mnemonicParsing="false" onAction="#toOrders" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Заказы">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
+                                <Button fx:id="lockButton" mnemonicParsing="false" onAction="#lock" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
@@ -68,6 +69,12 @@
                     </children>
                 </GridPane>
             </top>
+         <left>
+            <ListView fx:id="shiftListView" prefHeight="598.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
         </BorderPane>
     </children>
 </AnchorPane>

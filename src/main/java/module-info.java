@@ -13,8 +13,13 @@ open module ru.jegensomme.restaurant_service_system {
     requires java.validation;
     requires org.hibernate.validator;
 
+    requires net.bytebuddy;
+    requires com.fasterxml.classmate;
+    requires java.xml.bind;
+
     exports ru.jegensomme.restaurant_service_system.app;
 
+    exports ru.jegensomme.restaurant_service_system.app.controller;
     exports ru.jegensomme.restaurant_service_system.app.controller.user;
     exports ru.jegensomme.restaurant_service_system.app.controller.panecontroller;
 
@@ -23,5 +28,6 @@ open module ru.jegensomme.restaurant_service_system {
     exports ru.jegensomme.restaurant_service_system.model;
     exports ru.jegensomme.restaurant_service_system.service;
     exports ru.jegensomme.restaurant_service_system.repository.jdbc;
+    exports ru.jegensomme.restaurant_service_system.repository.jpa.nativesql;
     exports ru.jegensomme.restaurant_service_system.repository.jdbc.mapper;
 }

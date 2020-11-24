@@ -21,6 +21,37 @@ import java.util.*;
 
 @Repository
 public class JdbcUserRepository implements UserRepository {
+    @Override
+    public User save(User user) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public User get(int id) {
+        return null;
+    }
+
+    @Override
+    public User getByKey(String key) {
+        return null;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllByRole(Role role) {
+        return null;
+    }
+
+    /*
 
     public static final UserMapper USER_MAPPER = new UserMapper();
 
@@ -70,22 +101,31 @@ public class JdbcUserRepository implements UserRepository {
     public User get(int id) {
         return DataAccessUtils.singleResult(USER_MAPPER.mapRowSet(jdbcTemplate.queryForRowSet(
                 "SELECT u.id, u.name, u.key, r.role FROM users u" +
-                        " LEFT JOIN roles r on u.id = r.user_id  WHERE id=?", id)));
+                        " LEFT JOIN user_roles r on u.id = r.user_id  WHERE id=?", id)));
     }
 
     @Override
     public User getByKey(String key) {
         return DataAccessUtils.singleResult(USER_MAPPER.mapRowSet(jdbcTemplate.queryForRowSet(
                 "SELECT u.id, u.name, u.key, r.role FROM users u" +
-                        " LEFT JOIN roles r on u.id = r.user_id  WHERE key=?", key)));
+                        " LEFT JOIN user_roles r on u.id = r.user_id  WHERE key=?", key)));
     }
 
     @Override
     public List<User> getAll() {
         return USER_MAPPER.mapRowSet(jdbcTemplate.queryForRowSet(
                 "SELECT u.id, u.name, u.key, r.role FROM users u" +
-                        " LEFT JOIN roles r on u.id = r.user_id" +
+                        " LEFT JOIN user_roles r on u.id = r.user_id" +
                         " ORDER BY u.name ASC"));
+    }
+
+    @Override
+    public List<User> getAllByRole(Role role) {
+        return USER_MAPPER.mapRowSet(jdbcTemplate.queryForRowSet(
+                "SELECT u.id, u.name, u.key, r.role FROM users u" +
+                        " LEFT JOIN user_roles r on u.id = r.user_id" +
+                        " WHERE r.role =?" +
+                        " ORDER BY u.id ASC", role.toString()));
     }
 
     private class JdbcRoleRepository {
@@ -95,7 +135,7 @@ public class JdbcUserRepository implements UserRepository {
 
         JdbcRoleRepository(DataSource dataSource) {
             simpleJdbcInsert = new SimpleJdbcInsert(dataSource).
-                    withTableName("roles");
+                    withTableName("user_roles");
         }
 
         boolean save(int userId, Role role, Role... other) {
@@ -121,7 +161,7 @@ public class JdbcUserRepository implements UserRepository {
 
         Set<Role> get(int userId) {
             return EnumSet.copyOf(
-                    jdbcTemplate.query("SELECT role FROM roles WHERE user_id=?", rowMapper, userId));
+                    jdbcTemplate.query("SELECT role FROM user_roles WHERE user_id=?", rowMapper, userId));
 
         }
 
@@ -140,11 +180,12 @@ public class JdbcUserRepository implements UserRepository {
         }
 
         boolean delete(int userId, Role role) {
-            return jdbcTemplate.update("DELETE FROM roles WHERE user_id=:? and role=:?", userId, role) != 0;
+            return jdbcTemplate.update("DELETE FROM user_roles WHERE user_id=:? and role=:?", userId, role) != 0;
         }
 
         void deleteAll(int userId) {
-            jdbcTemplate.update("DELETE FROM roles WHERE user_id=?", userId);
+            jdbcTemplate.update("DELETE FROM user_roles WHERE user_id=?", userId);
         }
     }
+ */
 }

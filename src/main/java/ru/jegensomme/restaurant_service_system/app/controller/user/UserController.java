@@ -34,24 +34,24 @@ public class UserController {
     }
 
     public void update(User user, Integer id) {
-        logger.info("update {} with id", id);
         ValidationUtil.assureIdConsistent(user, id);
+        logger.info("update {} with id", id);
         service.update(user);
     }
 
     public User get(Integer id) {
-        logger.info("get {}", id);
+        logger.info("get user {}", id);
         return service.get(id);
     }
 
     public User getByKey(String key) {
-        logger.info("getByKey {}", key);
+        logger.info("getByKey user {}", key);
         ValidationUtil.assureKeyIsCorrect(key);
         return service.getByKey(key);
     }
 
     public List<User> getAll() {
-        logger.info("get all");
+        logger.info("getAll user");
         return service.getAll();
     }
 

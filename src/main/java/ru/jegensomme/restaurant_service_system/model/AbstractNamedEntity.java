@@ -1,9 +1,11 @@
 package ru.jegensomme.restaurant_service_system.model;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@MappedSuperclass
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
@@ -12,10 +14,6 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     protected String name;
 
     protected AbstractNamedEntity() {
-    }
-
-    protected AbstractNamedEntity(Integer id) {
-        super(id);
     }
 
     protected AbstractNamedEntity(Integer id, String name) {

@@ -1,35 +1,38 @@
 package ru.jegensomme.restaurant_service_system.testdata;
 
+import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.Dish;
-import ru.jegensomme.restaurant_service_system.model.DishCategory;
+
+import static ru.jegensomme.restaurant_service_system.model.AbstractBaseEntity.START_SEQ;
+
+import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY1;
+import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY2;
+import static ru.jegensomme.restaurant_service_system.testdata.DishModifierTestData.DISH_MODIFIER1;
+import static ru.jegensomme.restaurant_service_system.testdata.DishModifierTestData.DISH_MODIFIER2;
 
 public class DishTestData {
 
-    public static final int NOT_FOUND = 7;
+    public static final TestMatcher<Dish> DISH_MATCHER = TestMatcher.usingFieldsComparator("modifiers", "entry");
 
-    public static final int DISH_GROUP1_ID = 1;
-    public static final int DISH11_ID = 3;
-    public static final int DISH12_ID = 4;
+    public static final int NOT_FOUND = START_SEQ + 100;
 
-    public static final int DISH_GROUP2_ID = 2;
-    public static final int DISH21_ID = 5;
-    public static final int DISH22_ID = 6;
+    public static final int DISH1_ID = START_SEQ + 5;
+    public static final int DISH2_ID = DISH1_ID + 1;
+    public static final int DISH3_ID = DISH1_ID + 2;
+    public static final int DISH4_ID = DISH1_ID + 3;
 
-    public static final DishCategory DISH_GROUP1 = new Dish(DISH_GROUP1_ID, "Dish01",null, null);
-    public static final Dish DISH11 = new Dish(DISH11_ID, "Dish11", DISH_GROUP1_ID, 2000);
-    public static final Dish DISH12 = new Dish(DISH12_ID, "Dish12", DISH_GROUP1_ID, 3000);
-
-    public static final DishCategory DISH_GROUP_2 = new Dish(DISH_GROUP2_ID, "Dish02", null, null);
-    public static final Dish DISH21 = new Dish(DISH21_ID, "Dish21", DISH_GROUP2_ID, 2000);
-    public static final Dish DISH22 = new Dish(DISH22_ID, "Dish22", DISH_GROUP2_ID, 3000);
+    public static final Dish DISH1 = new Dish(DISH1_ID, "Dish1", DISH_CATEGORY1, 2000, DISH_MODIFIER1);
+    public static final Dish DISH2 = new Dish(DISH2_ID, "Dish2", DISH_CATEGORY1, 3000, DISH_MODIFIER2);
+    public static final Dish DISH3 = new Dish(DISH3_ID, "Dish3", DISH_CATEGORY2, 2000, DISH_MODIFIER1);
+    public static final Dish DISH4 = new Dish(DISH4_ID, "Dish4", DISH_CATEGORY2, 3000, DISH_MODIFIER2);
 
     public static Dish getNew() {
-        return new Dish(9, "New", null, 1000);
+        return new Dish(null, "New", DISH_CATEGORY1, 1000, DISH_MODIFIER1);
     }
 
     public static Dish getUpdated() {
-        Dish updated = new Dish(DISH11);
-        updated.setCost(3000);
+        Dish updated = new Dish(DISH1);
+        updated.setName("Updated");
         return updated;
     }
 }

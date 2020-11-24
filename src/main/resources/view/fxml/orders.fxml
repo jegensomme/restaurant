@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.OrdersPaneController">
+   <children>
+      <BorderPane layoutY="3.0" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <BorderPane prefHeight="136.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+               <center>
+                  <GridPane style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="byWaitersButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="По официантам" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="allTablesButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Все столы" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+         </bottom>
+         <top>
+            <GridPane prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="nameTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                        <TextField fx:id="roleTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <Button fx:id="toHomeButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="На главную">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="lockButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button fx:id="deleteOrderButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Удаление заказа">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="moveOrderButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Перенос заказа">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </top>
+         <left>
+            <ListView fx:id="waiterListView" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <GridPane fx:id="orderGridPane" prefHeight="597.0" prefWidth="1081.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

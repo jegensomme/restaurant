@@ -1,7 +1,6 @@
 package ru.jegensomme.restaurant_service_system.service;
 
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Stopwatch;
@@ -15,12 +14,16 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import ru.jegensomme.restaurant_service_system.model.Order;
-import ru.jegensomme.restaurant_service_system.testdata.OrderTestData;
-import ru.jegensomme.restaurant_service_system.testdata.UserTestData;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
+import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
 
-import java.util.List;
+import static org.junit.Assert.assertThrows;
 import java.util.concurrent.TimeUnit;
+
+import static ru.jegensomme.restaurant_service_system.testdata.OrderTestData.*;
+import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1_ID;
+import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER2_ID;
+import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER_ID;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -66,73 +69,59 @@ public class OrderServiceTest {
 
     @Test
     public void create() {
-        Order created = service.create(OrderTestData.getNew(), UserTestData.WAITER_ID);
-        Order newOrder = OrderTestData.getNew();
+        Order created = service.create(getNew(), WAITER1_ID);
+        Order newOrder = getNew();
         int newId = created.id();
         newOrder.setId(newId);
-        OrderTestData.ORDER_MATCHER.assertMatch(created, newOrder);
-        OrderTestData.ORDER_MATCHER.assertMatch(service.get(newId), newOrder);
+        ORDER_MATCHER.assertMatch(created, newOrder);
+        ORDER_MATCHER.assertMatch(service.get(newId), newOrder);
     }
 
     @Test
     public void delete() {
-        service.delete(OrderTestData.ORDER1_ID, UserTestData.MANAGER_ID);
-        Assert.assertThrows(NotFoundException.class, () -> {
-            service.get(OrderTestData.ORDER1_ID);
-        });
+        service.delete(ORDER1_ID, MANAGER_ID);
+        assertThrows(NotFoundException.class, () ->
+            service.get(ORDER1_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> {
-            service.delete(OrderTestData.NOT_FOUND, UserTestData.MANAGER_ID);
-        });
-    }
-
-    @Test
-    public void deleteNotManager() {
-        Assert.assertThrows(NotFoundException.class, () -> {
-            service.delete(OrderTestData.ORDER1_ID, UserTestData.WAITER_ID);
-        });
+        assertThrows(NotFoundException.class, () ->
+            service.delete(NOT_FOUND, MANAGER_ID));
     }
 
     @Test
     public void get() {
-        Order order = service.get(OrderTestData.ORDER1_ID);
-        OrderTestData.ORDER_MATCHER.assertMatch(order, OrderTestData.ORDER1);
+        Order order = service.get(ORDER1_ID);
+        ORDER_MATCHER.assertMatch(order, ORDER1);
     }
 
     @Test
     public void getNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> {
-            service.get(OrderTestData.NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () ->
+            service.get(NOT_FOUND));
     }
 
     @Test
     public void update() {
-        Order updated = OrderTestData.getUpdated();
-        service.update(updated, UserTestData.WAITER_ID);
-        OrderTestData.ORDER_MATCHER.assertMatch(service.get(OrderTestData.ORDER1_ID), updated);
+        Order updated = getUpdated();
+        service.update(updated, WAITER1_ID);
+        ORDER_MATCHER.assertMatch(service.get(ORDER1_ID), updated);
     }
 
     @Test
     public void updateNotOwn() {
-        Assert.assertThrows(NotFoundException.class, () -> {
-            service.update(OrderTestData.getUpdated(), UserTestData.MANAGER_ID);
-        });
+        assertThrows(AccessException.class, () ->
+            service.update(getUpdated(), WAITER2_ID));
     }
 
     @Test
     public void getAll() {
-        List<Order> orders = service.getAll();
-        OrderTestData.ORDER_MATCHER.assertMatch(service.getAll(),
-                OrderTestData.ORDER1, OrderTestData.ORDER2);
+        ORDER_MATCHER.assertMatch(service.getAll(), ORDER1, ORDER2, ORDER3, ORDER4);
     }
 
     @Test
     public void getAllByWaiter() {
-        OrderTestData.ORDER_MATCHER.assertMatch(service.getAllByWaiter(UserTestData.WAITER_ID),
-                OrderTestData.ORDER1);
+        ORDER_MATCHER.assertMatch(service.getAllByUser(WAITER1_ID), ORDER1, ORDER3);
     }
 }

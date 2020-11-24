@@ -1,44 +1,55 @@
 package ru.jegensomme.restaurant_service_system.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@NamedQueries({
+        @NamedQuery(name = DishModifier.DELETE, query = "delete from DishModifier dm where dm.id=:id")
+})
+@Entity
+@Table(name = "modifiers")
 public class DishModifier extends AbstractNamedEntity {
 
-    private int minValue;
+    public static final String DELETE = "DishModifier.delete";
 
-    private int maxValue;
+    @Column(name = "min_value", nullable = false, columnDefinition = "integer default 1 check ( min_value >= 0 )")
+    @NotNull
+    @Range(min = 0)
+    private Integer minValue;
 
-    private Dish dish;
+    @Column(name = "max_value", columnDefinition = "integer check ( max_value >= min_value )")
+    @Range(min = 0)
+    private Integer maxValue;
 
     public DishModifier() {
     }
 
-    public DishModifier(Integer id, String name, int minValue, int maxValue) {
+    public DishModifier(DishModifier dishModifier) {
+        this(dishModifier.id, dishModifier.name, dishModifier.minValue, dishModifier.maxValue);
+    }
+
+    public DishModifier(Integer id, String name, Integer minValue, Integer maxValue) {
         super(id, name);
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
 
-    public void setMinValue(int minValue) {
-        this.minValue = minValue;
-    }
-
-    public int getMinValue() {
+    public Integer getMinValue() {
         return minValue;
     }
 
-    public void setMaxValue(int maxValue) {
-        this.maxValue = maxValue;
+    public void setMinValue(Integer minValue) {
+        this.minValue = minValue;
     }
 
-    public int getMaxValue() {
+    public Integer getMaxValue() {
         return maxValue;
     }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
-    }
-
-    public Dish getDish() {
-        return dish;
+    public void setMaxValue(Integer maxValue) {
+        this.maxValue = maxValue;
     }
 
     @Override

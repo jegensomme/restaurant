@@ -13,13 +13,19 @@ import ru.jegensomme.restaurant_service_system.app.controller.user.UserControlle
 import ru.jegensomme.restaurant_service_system.app.util.SecurityUtil;
 import ru.jegensomme.restaurant_service_system.app.util.SpringStageLoader;
 import ru.jegensomme.restaurant_service_system.model.User;
+import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
+
+import java.io.IOException;
 
 @Component
-public class AuthPaneController {
+public class AuthPaneController extends AbstractPaneController {
 
     private UserController userController;
 
     private SpringStageLoader stageLoader;
+
+    @Autowired
+    private HomePaneController homePaneController;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -44,13 +50,22 @@ public class AuthPaneController {
     }
 
     @FXML
-    public void enter(ActionEvent event) throws Exception {
+    public void enter(ActionEvent event) {
         String key = passwordField.getText();
-        User user = userController.getByKey(key);
-        SecurityUtil.setAuthUserId(user.getId());
-        SecurityUtil.setAuthUserRoles(user.getRoles());
-        logger.info("authorised {}", user.getId());
-        stageLoader.setScene("home");
+        try {
+            User user = userController.getByKey(key);
+            SecurityUtil.setAuthUserId(user.getId());
+            SecurityUtil.setAuthUserRoles(user.getRoles());
+            logger.info("authorised {}", user.getId());
+            stageLoader.setScene("home");
+            homePaneController.init(user);
+        } catch (IllegalArgumentException e) {
+
+        } catch (NotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
     }
 
     @FXML
