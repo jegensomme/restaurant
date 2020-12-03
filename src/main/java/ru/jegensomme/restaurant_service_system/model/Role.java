@@ -5,6 +5,6 @@ public enum Role {
     MANAGER;
 
     public String toStringRus() {
-        return this == WAITER ? "Оффициант" : "Менеджер";
+        return this == WAITER ? "Официант" : "Менеджер";
     }
 }

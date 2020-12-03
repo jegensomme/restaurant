@@ -11,6 +11,7 @@ import java.util.List;
 public class JpaNativeOrderDishRepository extends JpaOrderDishRepository {
 
     @Override
+    @SuppressWarnings("unchecked")
     public OrderDish get(int id) {
         List<OrderDish> result = em.createNativeQuery("select * from order_dishes od" +
                 " left join dishes d on d.id = od.dish_id" +
@@ -22,6 +23,7 @@ public class JpaNativeOrderDishRepository extends JpaOrderDishRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<OrderDish> getAll(int orderId) {
         return em.createNativeQuery("select * from order_dishes od" +
                 " left join dishes d on d.id = od.dish_id" +

@@ -1,14 +1,16 @@
 package ru.jegensomme.restaurant_service_system.service;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+/*import org.junit.Test;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -16,63 +18,41 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.Dish;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1_ID;
-import static ru.jegensomme.restaurant_service_system.testdata.DishTestData.*;
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY1_ID;
 
 import ru.jegensomme.restaurant_service_system.model.DishModifier;
+import ru.jegensomme.restaurant_service_system.util.JpaUtil;
 import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 import static org.junit.Assert.assertThrows;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringRunner.class)
-@Sql(scripts = {
-        "classpath:db/populateDB.sql"
-}, config = @SqlConfig(encoding = "UTF-8"))
-public class DishServiceTest {
+public class DishServiceTest extends AbstractServiceTest {
 
-    static {
-        SLF4JBridgeHandler.install();
+    @Autowired
+    private CacheManager cacheManager;
+
+    @Autowired
+    protected JpaUtil jpaUtil;
+
+    @Before
+    public void setUp() {
+        cacheManager.getCache("dishes").clear();
+        jpaUtil.clear2ndLevelHibernateCache();
     }
-
-    private static final Logger log = getLogger("result");
-
-    private static final StringBuilder results = new StringBuilder();
-
-    @Rule
-    public final Stopwatch stopwatch = new Stopwatch() {
-        @Override
-        protected void finished(long nanos, Description description) {
-            String result = String.format("\n%-25s %7d", description.getMethodName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-            results.append(result);
-            log.info(result + " ms\n");
-        }
-    };
 
     @Autowired
     private DishService service;
 
-    @AfterClass
-    public static void printResult() {
-        log.info("\n---------------------------------" +
-                "\nTest                 Duration, ms" +
-                "\n---------------------------------" +
-                results +
-                "\n---------------------------------");
-    }
-
     @Test
-    public void create() {
-        Dish created = service.create(getNew(), MANAGER_ID);
+    public void create() throws Exception {
+        Dish created = service.create(getNew());
         int newId = created.id();
         Dish newDish = getNew();
         newDish.setId(newId);
@@ -81,14 +61,8 @@ public class DishServiceTest {
     }
 
     @Test
-    public void createNotManager() {
-        assertThrows(AccessException.class, () ->
-                service.create(getNew(), WAITER1_ID));
-    }
-
-    @Test
-    public void delete() {
-        service.delete(DISH1_ID, MANAGER_ID);
+    public void delete() throws Exception {
+        service.delete(DISH1_ID);
         assertThrows(NotFoundException.class, () -> {
             service.get(DISH1_ID);
         });
@@ -97,19 +71,12 @@ public class DishServiceTest {
     @Test
     public void deleteNotFound() {
         assertThrows(NotFoundException.class, () -> {
-            service.delete(NOT_FOUND, MANAGER_ID);
+            service.delete(NOT_FOUND);
         });
     }
 
     @Test
-    public void deleteNotManager() {
-        assertThrows(AccessException.class, () -> {
-            service.delete(DISH1_ID, WAITER1_ID);
-        });
-    }
-
-    @Test
-    public void get() {
+    public void get() throws Exception {
         Dish dish = service.get(DISH1_ID);
         DISH_MATCHER.assertMatch(dish, DISH1);
     }
@@ -122,17 +89,10 @@ public class DishServiceTest {
     }
 
     @Test
-    public void update() {
+    public void update() throws Exception {
         Dish updated = getUpdated();
-        service.update(updated, MANAGER_ID);
+        service.update(updated);
         DISH_MATCHER.assertMatch(service.get(DISH1_ID), updated);
-    }
-
-    @Test
-    public void updateNotManager() {
-        assertThrows(AccessException.class, () -> {
-            service.update(getUpdated(), WAITER1_ID);
-        });
     }
 
     @Test
@@ -145,4 +105,9 @@ public class DishServiceTest {
     public void getAllByCategory() {
         DISH_MATCHER.assertMatch(service.getAllByCategory(DISH_CATEGORY1_ID), DISH1, DISH2);
     }
-}
+
+    @Test
+    public void getAllTop() {
+        DISH_MATCHER.assertMatch(service.getAllTop(), Collections.EMPTY_LIST);
+    }
+}*/

@@ -1,5 +1,5 @@
 package ru.jegensomme.restaurant_service_system.testdata;
-
+/*
 import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.Dish;
 
@@ -7,8 +7,6 @@ import static ru.jegensomme.restaurant_service_system.model.AbstractBaseEntity.S
 
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY1;
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY2;
-import static ru.jegensomme.restaurant_service_system.testdata.DishModifierTestData.DISH_MODIFIER1;
-import static ru.jegensomme.restaurant_service_system.testdata.DishModifierTestData.DISH_MODIFIER2;
 
 public class DishTestData {
 
@@ -35,4 +33,4 @@ public class DishTestData {
         updated.setName("Updated");
         return updated;
     }
-}
+}*/

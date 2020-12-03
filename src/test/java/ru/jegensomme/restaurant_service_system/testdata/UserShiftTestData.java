@@ -7,9 +7,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 import static ru.jegensomme.restaurant_service_system.model.AbstractBaseEntity.START_SEQ;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER2;
 
 public class UserShiftTestData {
 
@@ -17,7 +14,7 @@ public class UserShiftTestData {
 
     public static final int NOT_FOUND = START_SEQ + 100;
 
-    public static final int USER_SHIFT1_ID = START_SEQ + 23;
+    public static final int USER_SHIFT1_ID = START_SEQ + 27;
     public static final int USER_SHIFT2_ID = USER_SHIFT1_ID + 1;
     public static final int USER_SHIFT3_ID = USER_SHIFT1_ID + 2;
 
@@ -25,7 +22,7 @@ public class UserShiftTestData {
     public static final int USER_SHIFT5_ID = USER_SHIFT1_ID + 4;
     public static final int USER_SHIFT6_ID = USER_SHIFT1_ID + 5;
 
-    public static final UserShift USER_SHIFT1 = new UserShift(USER_SHIFT1_ID,
+    /*public static final UserShift USER_SHIFT1 = new UserShift(USER_SHIFT1_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 10, 9, 0),
             LocalDateTime.of(2020, Month.OCTOBER, 10, 21, 0));
     public static final UserShift USER_SHIFT2 = new UserShift(USER_SHIFT2_ID,
@@ -54,5 +51,5 @@ public class UserShiftTestData {
         UserShift updated = new UserShift(USER_SHIFT4);
         updated.setEndDateTime(LocalDateTime.of(2020, Month.OCTOBER, 11, 23, 0));
         return updated;
-    }
+    }*/
 }

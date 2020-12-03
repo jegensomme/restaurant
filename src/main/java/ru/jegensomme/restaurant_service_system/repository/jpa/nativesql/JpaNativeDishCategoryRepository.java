@@ -11,6 +11,7 @@ import java.util.List;
 public class JpaNativeDishCategoryRepository extends JpaDishCategoryRepository {
 
     @Override
+    @SuppressWarnings("unchecked")
     public DishCategory get(int id) {
         List<DishCategory> result = em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
                 " where d.id=:id", DishCategory.class).
@@ -20,6 +21,7 @@ public class JpaNativeDishCategoryRepository extends JpaDishCategoryRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DishCategory> getAll() {
         return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
                 " order by d.name", DishCategory.class).
@@ -27,11 +29,21 @@ public class JpaNativeDishCategoryRepository extends JpaDishCategoryRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DishCategory> getAllByCategory(int categoryId) {
         return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
                 " where d.category_id=:category_id" +
                 " order by d.category_id, d.name", DishCategory.class).
                 setParameter("category_id", categoryId).
+                getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<DishCategory> getAllTop() {
+        return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
+                " where d.category_id is null" +
+                " order by d.name", DishCategory.class).
                 getResultList();
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
@@ -8,105 +10,124 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.OrdersPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.OrdersPaneController">
    <children>
-      <BorderPane layoutY="3.0" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <BorderPane prefHeight="136.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="136.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                <center>
-                  <GridPane style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                  <GridPane fx:id="controlPane" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="782.0" minWidth="10.0" prefWidth="705.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="544.0" minWidth="10.0" prefWidth="395.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="byWaitersButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="По официантам" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="allTablesButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Все столы" GridPane.columnIndex="2">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Button>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="136.0" prefWidth="17.0" HBox.hgrow="NEVER" />
+                              <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="60.0" prefWidth="157.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Отмена" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <HBox fx:id="orderControlBox" alignment="CENTER" prefHeight="136.0" prefWidth="579.0">
+                                 <children>
+                                    <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteOrderClick" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Удалить заказ" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="closeOrderButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCloseOrderClick" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Закрыть заказ" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="moveOrderButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onMoveOrderClick" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Перенос заказа" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Pane prefHeight="136.0" prefWidth="24.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Pane maxWidth="-Infinity" prefHeight="136.0" prefWidth="100.0" />
+                              <Button fx:id="showAllButton" mnemonicParsing="false" onAction="#onShowAllClick" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Все столы">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </Button>
+                              <Pane maxWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
                      </children>
                   </GridPane>
                </center>
             </BorderPane>
          </bottom>
          <top>
-            <GridPane prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" />
                         <TextField fx:id="nameTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="5.0" visible="false" />
                         <TextField fx:id="roleTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                  <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="toHomeButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="На главную">
+                        <Button fx:id="openHomeButton" mnemonicParsing="false" onAction="#onOpenHomeClick" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="На главную">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="lockButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
+                        <Button fx:id="lockButton" mnemonicParsing="false" onAction="#onLockClick" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <Button fx:id="deleteOrderButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Удаление заказа">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="moveOrderButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Перенос заказа">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
          </top>
          <left>
-            <ListView fx:id="waiterListView" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="waiterListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onWaiterListClicked" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <GridPane fx:id="orderGridPane" prefHeight="597.0" prefWidth="1081.0">
+                  <GridPane fx:id="orderGridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="798.0" style="-fx-border-width: 2; -fx-background-color: DCDCDC; -fx-border-color: DCDCDC;">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="118.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="118.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="118.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="118.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="118.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
                </content>

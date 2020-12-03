@@ -1,14 +1,18 @@
 package ru.jegensomme.restaurant_service_system.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import org.hibernate.annotations.Cache;
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = DishCategory.DELETE, query = "delete from  DishCategory dc where dc.id=:id")
 })
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "dish_categories")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

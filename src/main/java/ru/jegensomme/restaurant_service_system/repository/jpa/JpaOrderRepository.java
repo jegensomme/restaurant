@@ -2,6 +2,7 @@ package ru.jegensomme.restaurant_service_system.repository.jpa;
 
 import org.springframework.stereotype.Repository;
 import ru.jegensomme.restaurant_service_system.model.Order;
+import ru.jegensomme.restaurant_service_system.model.OrderStatus;
 import ru.jegensomme.restaurant_service_system.model.User;
 import ru.jegensomme.restaurant_service_system.repository.OrderRepository;
 
@@ -45,6 +46,21 @@ public class JpaOrderRepository implements OrderRepository {
 
     @Override
     public List<Order> getAllByUser(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<Order> getAllOpened() {
+        return null;
+    }
+
+    @Override
+    public List<Order> getAllOpenedByUser(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<Order> getAllByUserShiftStatus(int userShiftId, OrderStatus status) {
         return null;
     }
 }

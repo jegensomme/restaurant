@@ -7,28 +7,30 @@
    http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="spring-cache.xml"/>
+
     <context:property-placeholder location="classpath:spring/config.properties" ignore-unresolvable="true"/>
 
     <context:annotation-config/>
 
     <context:component-scan base-package="ru.jegensomme.restaurant_service_system.app.controller"/>
+    <context:component-scan base-package="ru.jegensomme.restaurant_service_system.app.ui.panecontroller"/>
 
     <context:component-scan base-package="ru.jegensomme.restaurant_service_system.app.util"/>
     <!--<context:component-scan base-package="ru.jegensomme.restaurant_service_system.service"/>-->
 
     <!--<bean class="ru.jegensomme.restaurant_service_system.app.util.SpringStageLoader"/>
 
-    <bean class="ru.jegensomme.restaurant_service_system.app.controller.user.UserController"/>
+    <bean class="ru.jegensomme.restaurant_service_system.app.controller.UserController"/>
 
     <bean class="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.AuthPaneController"/>
     -->
     <bean name="userService" class="ru.jegensomme.restaurant_service_system.service.UserService"/>
+    <bean name="tableService" class="ru.jegensomme.restaurant_service_system.service.TableService"/>
     <bean name="orderService" class="ru.jegensomme.restaurant_service_system.service.OrderService"/>
     <bean name="dishService" class="ru.jegensomme.restaurant_service_system.service.DishService"/>
     <bean name="dishCategoryService" class="ru.jegensomme.restaurant_service_system.service.DishCategoryService"/>
     <bean name="userShiftService" class="ru.jegensomme.restaurant_service_system.service.UserShiftService"/>
     <bean name="orderDishService" class="ru.jegensomme.restaurant_service_system.service.OrderDishService"/>
-    <bean name="dishModifierService" class="ru.jegensomme.restaurant_service_system.service.DishModifierService"/>
-
 
 </beans>

@@ -12,7 +12,7 @@ import java.util.List;
         @NamedQuery(name = Order.DELETE, query = "delete from Order o where o.id=:id")
 })
 @Entity
-@Table(name = "orders", indexes = @Index(columnList = ("user_id, date_time"), name = "orders_user_id_date_time_idx"))
+@javax.persistence.Table(name = "orders", indexes = @Index(columnList = ("user_id, date_time"), name = "orders_user_id_date_time_idx"))
 public class Order extends AbstractBaseEntity {
 
     public static final String DELETE = "Order.delete";
@@ -26,39 +26,40 @@ public class Order extends AbstractBaseEntity {
     @NotNull
     private LocalDateTime dateTime;
 
-    @Column(name = "table_number", nullable = false)
-    @NotNull
-    private Integer tableNumber;
+    @ManyToOne
+    @JoinColumn(name = "table_id")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Table table;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, columnDefinition = "varchar default 'PROCESSING'")
     private OrderStatus status;
 
-    @Column(name = "discount", nullable = false, columnDefinition = "smallint default 0 check (discount >= 0 and discount <= 100)")
+    @Column(name = "discount", nullable = false)
+    @NotNull
     @Range(min = 0, max = 100)
-    private int discount;
+    private Integer discount = 0;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @Column(name = "check_amount", nullable = false)
+    @NotNull
+    @Range(min = 0)
+    private double checkAmount = 0;
+
+    @OneToMany(mappedBy = "order")
     private List<OrderDish> dishes;
 
     public Order() {
     }
 
     public Order(Order order) {
-        this(order.id, order.user, order.dateTime, order.tableNumber, order.status, order.discount);
+        this(order.id, order.dateTime, order.table, order.status);
     }
 
-    public Order(Integer id, LocalDateTime dateTime, Integer tableNumber, OrderStatus status, int discount) {
-        this(id, null, dateTime, tableNumber, status, discount);
-    }
-
-    public Order(Integer id, User user, LocalDateTime dateTime, Integer tableNumber, OrderStatus status, int discount) {
+    public Order(Integer id, LocalDateTime dateTime, Table table, OrderStatus status) {
         super(id);
-        this.user = user;
         this.dateTime = dateTime;
-        this.tableNumber = tableNumber;
+        this.table = table;
         this.status = status;
-        this.discount = discount;
     }
 
     public void setUser(User user) {
@@ -77,12 +78,12 @@ public class Order extends AbstractBaseEntity {
         return dateTime;
     }
 
-    public void setTableNumber(Integer tableNumber) {
-        this.tableNumber = tableNumber;
+    public Table getTable() {
+        return table;
     }
 
-    public Integer getTableNumber() {
-        return tableNumber;
+    public void setTable(Table table) {
+        this.table = table;
     }
 
     public void setStatus(OrderStatus status) {
@@ -101,6 +102,14 @@ public class Order extends AbstractBaseEntity {
         return discount;
     }
 
+    public double getCheckAmount() {
+        return checkAmount;
+    }
+
+    public void setCheckAmount(double cost) {
+        this.checkAmount = cost;
+    }
+
     public List<OrderDish> getDishes() {
         return dishes;
     }
@@ -114,7 +123,9 @@ public class Order extends AbstractBaseEntity {
         return "Order{" +
                 "id=" + id +
                 ", dateTime=" + dateTime +
-                ", tableNumber=" + tableNumber +
+                ", table=" + table +
+                ", discount=" + discount +
+                ", cost=" + checkAmount +
                 ", status=" + status +
                 '}';
     }

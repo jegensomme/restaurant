@@ -1,8 +1,11 @@
 package ru.jegensomme.restaurant_service_system.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -13,6 +16,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "delete from User u where u.id=:id")
 })
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "key", name = "user_unique_key_idx")})
 public class User extends AbstractNamedEntity {
@@ -25,6 +29,7 @@ public class User extends AbstractNamedEntity {
     private String key;
 
     @Enumerated(EnumType.STRING)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
     @Column(name = "role", nullable = false)

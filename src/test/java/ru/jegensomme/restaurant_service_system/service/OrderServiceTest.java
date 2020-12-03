@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+/*import org.slf4j.bridge.SLF4JBridgeHandler;
 import ru.jegensomme.restaurant_service_system.model.Order;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
@@ -27,48 +27,13 @@ import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANA
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringRunner.class)
-@Sql(scripts = {
-        "classpath:db/populateDB.sql"
-}, config = @SqlConfig(encoding = "UTF-8"))
-public class OrderServiceTest {
-
-    static {
-        SLF4JBridgeHandler.install();
-    }
-
-    private static final Logger log = getLogger("result");
-
-    private static final StringBuilder results = new StringBuilder();
-
-    @Rule
-    public final Stopwatch stopwatch = new Stopwatch() {
-        @Override
-        protected void finished(long nanos, Description description) {
-            String result = String.format("\n%-25s %7d", description.getMethodName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-            results.append(result);
-            log.info(result + " ms\n");
-        }
-    };
+public class OrderServiceTest extends AbstractServiceTest {
 
     @Autowired
     private OrderService service;
 
-    @AfterClass
-    public static void printResult() {
-        log.info("\n---------------------------------" +
-                "\nTest                 Duration, ms" +
-                "\n---------------------------------" +
-                results +
-                "\n---------------------------------");
-    }
-
     @Test
-    public void create() {
+    public void create() throws Exception {
         Order created = service.create(getNew(), WAITER1_ID);
         Order newOrder = getNew();
         int newId = created.id();
@@ -78,8 +43,8 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void delete() {
-        service.delete(ORDER1_ID, MANAGER_ID);
+    public void delete() throws Exception {
+        service.delete(ORDER1_ID);
         assertThrows(NotFoundException.class, () ->
             service.get(ORDER1_ID));
     }
@@ -87,11 +52,11 @@ public class OrderServiceTest {
     @Test
     public void deleteNotFound() {
         assertThrows(NotFoundException.class, () ->
-            service.delete(NOT_FOUND, MANAGER_ID));
+            service.delete(NOT_FOUND));
     }
 
     @Test
-    public void get() {
+    public void get() throws Exception {
         Order order = service.get(ORDER1_ID);
         ORDER_MATCHER.assertMatch(order, ORDER1);
     }
@@ -103,16 +68,10 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void update() {
+    public void update() throws Exception {
         Order updated = getUpdated();
         service.update(updated, WAITER1_ID);
         ORDER_MATCHER.assertMatch(service.get(ORDER1_ID), updated);
-    }
-
-    @Test
-    public void updateNotOwn() {
-        assertThrows(AccessException.class, () ->
-            service.update(getUpdated(), WAITER2_ID));
     }
 
     @Test
@@ -124,4 +83,9 @@ public class OrderServiceTest {
     public void getAllByWaiter() {
         ORDER_MATCHER.assertMatch(service.getAllByUser(WAITER1_ID), ORDER1, ORDER3);
     }
-}
+
+    @Test
+    public void getAllOpened() {
+        ORDER_MATCHER.assertMatch(service.getAllOpened(), ORDER1, ORDER4);
+    }
+}*/

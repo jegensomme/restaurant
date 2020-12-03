@@ -4,8 +4,10 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NamedQueries({
         @NamedQuery(name = UserShift.DELETE, query = "delete from UserShift us where us.id=:id")
@@ -22,29 +24,34 @@ public class UserShift extends AbstractBaseEntity {
     @NotNull
     private User user;
 
-    @Column(name = "start_date_time", nullable = false, columnDefinition = "timestamp default now()")
+    @Column(name = "date", nullable = false)
     @NotNull
-    private LocalDateTime startDateTime;
+    private LocalDate date;
 
-    @Column(name = "end_date_time", columnDefinition = "timestamp check ( end_date_time >= start_date_time )")
-    private LocalDateTime endDateTime;
+    @Column(name = "start_time", nullable = false)
+    @NotNull
+    private LocalTime startTime;
+
+    @Column(name = "end_time")
+    private LocalTime endTime;
 
     public UserShift() {
     }
 
     public UserShift(UserShift shift) {
-        this(shift.id, shift.user, shift.startDateTime, shift.endDateTime);
+        this(shift.id, shift.user, shift.date, shift.startTime, shift.endTime);
     }
 
-    public UserShift(Integer id, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this(id, null, startDateTime, endDateTime);
+    public UserShift(Integer id, LocalDate date, LocalTime startTime, LocalTime endTime) {
+        this(id, null, date, startTime, endTime);
     }
 
-    public UserShift(Integer id, User user, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public UserShift(Integer id, User user, LocalDate date, LocalTime startTime, LocalTime endTime) {
         super(id);
         this.user = user;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public User getUser() {
@@ -55,28 +62,37 @@ public class UserShift extends AbstractBaseEntity {
         this.user = waiter;
     }
 
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
+    public LocalTime getStartTime() {
+        return startTime;
     }
 
-    public void setStartDateTime(LocalDateTime startDateTime) {
-        this.startDateTime = startDateTime;
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
-    public LocalDateTime getEndDateTime() {
-        return endDateTime;
+    public LocalTime getEndTime() {
+        return endTime;
     }
 
-    public void setEndDateTime(LocalDateTime endDateTime) {
-        this.endDateTime = endDateTime;
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
         return "UserShift{" +
                 "id=" + id +
-                ", startDateTime=" + startDateTime +
-                ", endDateTime=" + endDateTime +
+                ", date=" + date +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
 }

@@ -7,6 +7,7 @@ import ru.jegensomme.restaurant_service_system.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -52,4 +53,8 @@ public class JpaUserRepository implements UserRepository {
         return null;
     }
 
+    @Override
+    public List<User> getAllByShiftDate(LocalDate date) {
+        return null;
+    }
 }

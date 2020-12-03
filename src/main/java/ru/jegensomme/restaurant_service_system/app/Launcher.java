@@ -23,7 +23,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stageLoader.loadStage().show();
+        stageLoader.loadMainStage().show();
     }
 
     @Override

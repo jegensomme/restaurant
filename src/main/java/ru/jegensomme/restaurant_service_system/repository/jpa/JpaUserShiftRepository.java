@@ -20,6 +20,9 @@ public class JpaUserShiftRepository implements UserShiftRepository {
     public UserShift save(UserShift userShift, int userId) {
         userShift.setUser(em.find(User.class, userId));
         if (userShift.isNew()) {
+            if (!getOpenedByUser(userId).isEmpty()) {
+                return null;
+            }
             em.persist(userShift);
             return userShift;
         } else {
@@ -40,17 +43,27 @@ public class JpaUserShiftRepository implements UserShiftRepository {
     }
 
     @Override
-    public UserShift getByUserDate(int userId, LocalDate date) {
-        return null;
-    }
-
-    @Override
     public List<UserShift> getAll() {
         return null;
     }
 
     @Override
     public List<UserShift> getAllByUser(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<UserShift> getOpenedByUser(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<UserShift> getBetweenInclusiveByUser(int userId, LocalDate startDate, LocalDate endDate) {
+        return null;
+    }
+
+    @Override
+    public Float getTotalSalesByUserShift(int id) {
         return null;
     }
 }

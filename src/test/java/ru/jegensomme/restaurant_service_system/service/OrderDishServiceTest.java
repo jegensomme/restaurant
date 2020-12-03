@@ -14,7 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.jegensomme.restaurant_service_system.model.Dish;
-import ru.jegensomme.restaurant_service_system.model.OrderDish;
+/*import ru.jegensomme.restaurant_service_system.model.OrderDish;
 import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 
@@ -28,49 +28,14 @@ import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAIT
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER2_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER_ID;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringRunner.class)
-@Sql(scripts = {
-        "classpath:db/populateDB.sql"
-}, config = @SqlConfig(encoding = "UTF-8"))
-public class OrderDishServiceTest {
-
-    static {
-        SLF4JBridgeHandler.install();
-    }
-
-    private static final Logger log = getLogger("result");
-
-    private static final StringBuilder results = new StringBuilder();
-
-    @Rule
-    public final Stopwatch stopwatch = new Stopwatch() {
-        @Override
-        protected void finished(long nanos, Description description) {
-            String result = String.format("\n%-25s %7d", description.getMethodName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-            results.append(result);
-            log.info(result + " ms\n");
-        }
-    };
+public class OrderDishServiceTest extends AbstractServiceTest {
 
     @Autowired
     private OrderDishService service;
 
-    @AfterClass
-    public static void printResult() {
-        log.info("\n---------------------------------" +
-                "\nTest                 Duration, ms" +
-                "\n---------------------------------" +
-                results +
-                "\n---------------------------------");
-    }
-
     @Test
-    public void create() {
-        OrderDish created = service.create(getNew(), MANAGER_ID);
+    public void create() throws Exception {
+        OrderDish created = service.create(getNew());
         int newId = created.id();
         OrderDish newDish = getNew();
         newDish.setId(newId);
@@ -79,14 +44,8 @@ public class OrderDishServiceTest {
     }
 
     @Test
-    public void createNotOwn() {
-        assertThrows(AccessException.class, () ->
-                service.create(getNew(), WAITER2_ID));
-    }
-
-    @Test
-    public void delete() {
-        service.delete(ORDER_DISH_ID1, MANAGER_ID);
+    public void delete() throws Exception {
+        service.delete(ORDER_DISH_ID1);
         assertThrows(NotFoundException.class, () -> {
             service.get(ORDER_DISH_ID1);
         });
@@ -95,19 +54,12 @@ public class OrderDishServiceTest {
     @Test
     public void deleteNotFound() {
         assertThrows(NotFoundException.class, () -> {
-            service.delete(NOT_FOUND, MANAGER_ID);
+            service.delete(NOT_FOUND);
         });
     }
 
     @Test
-    public void deleteNotManager() {
-        assertThrows(AccessException.class, () -> {
-            service.delete(ORDER_DISH_ID1, WAITER1_ID);
-        });
-    }
-
-    @Test
-    public void get() {
+    public void get() throws Exception {
         OrderDish dish = service.get(ORDER_DISH_ID1);
         ORDER_DISH_MATCHER.assertMatch(dish, ORDER_DISH1);
     }
@@ -120,21 +72,14 @@ public class OrderDishServiceTest {
     }
 
     @Test
-    public void update() {
+    public void update() throws Exception {
         OrderDish updated = getUpdated();
-        service.update(updated, MANAGER_ID);
+        service.update(updated);
         ORDER_DISH_MATCHER.assertMatch(service.get(ORDER_DISH_ID1), updated);
-    }
-
-    @Test
-    public void updateNotManager() {
-        assertThrows(AccessException.class, () -> {
-            service.update(getUpdated(), WAITER1_ID);
-        });
     }
 
     @Test
     public void getAll() {
         ORDER_DISH_MATCHER.assertMatch(service.getAll(ORDER1_ID), ORDER_DISH1, ORDER_DISH2);
     }
-}
+}*/

@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,16 +36,28 @@ public class SpringStageLoader implements ApplicationContextAware {
         return loader.load(SpringStageLoader.class.getResourceAsStream(FXML_DIR + fxmlName + ".fxml"));
     }
 
-    public Stage loadStage() throws IOException {
-        stage = new Stage();
-        stage.setScene(new Scene(load(AUTH)));
-        stage.setOnHidden(event -> Platform.exit());
-        stage.setTitle(appTitle);
+    public static Stage loadStage(String fxmlName, String title) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene((new Scene(load(fxmlName))));
+        stage.setTitle(title);
         return stage;
     }
 
-    public void setScene(String fxmlName) throws IOException {
-        stage.setScene(new Scene(load(fxmlName)));
+    public Stage loadModalStage(String fxmlName, String title) throws IOException {
+        Stage stage = loadStage(fxmlName, title);
+        stage.initOwner(this.stage);
+        stage.initModality(Modality.WINDOW_MODAL);
+        return stage;
+    }
+
+    public Stage loadMainStage() throws IOException {
+        stage = loadStage(AUTH, appTitle);
+        stage.setOnHidden(event -> Platform.exit());
+        return stage;
+    }
+
+    public void setPane(String fxmlName) throws IOException {
+        stage.getScene().setRoot(load(fxmlName));
     }
 
     @Override

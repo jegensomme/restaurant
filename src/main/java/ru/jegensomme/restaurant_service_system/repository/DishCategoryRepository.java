@@ -15,4 +15,6 @@ public interface DishCategoryRepository {
     List<DishCategory> getAll();
 
     List<DishCategory> getAllByCategory(int categoryId);
+
+    List<DishCategory> getAllTop();
 }

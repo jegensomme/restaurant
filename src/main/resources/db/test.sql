@@ -1,4 +1,5 @@
+select * from users u
+    left join user_roles ur on u.id = ur.user_id
+    where key='1234';
 
-select *
-from user_shifts left join users u on u.id = user_shifts.user_id
-order by date(start_date_time), user_id;
+grant select on table users to manager;

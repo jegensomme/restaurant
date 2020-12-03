@@ -45,4 +45,9 @@ public class JpaDishRepository implements DishRepository {
     public List<Dish> getAllByCategory(int categoryId) {
         return null;
     }
+
+    @Override
+    public List<Dish> getAllTop() {
+        return null;
+    }
 }

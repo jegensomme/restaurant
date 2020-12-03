@@ -28,48 +28,13 @@ import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANA
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER2_ID;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringRunner.class)
-@Sql(scripts = {
-        "classpath:db/populateDB.sql"
-}, config = @SqlConfig(encoding = "UTF-8"))
-public class UserShiftServiceTest {
-
-    static {
-        SLF4JBridgeHandler.install();
-    }
-
-    private static final Logger log = getLogger("result");
-
-    private static final StringBuilder results = new StringBuilder();
-
-    @Rule
-    public final Stopwatch stopwatch = new Stopwatch() {
-        @Override
-        protected void finished(long nanos, Description description) {
-            String result = String.format("\n%-25s %7d", description.getMethodName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-            results.append(result);
-            log.info(result + " ms\n");
-        }
-    };
-
+public class UserShiftServiceTest extends AbstractServiceTest {
+/*
     @Autowired
     private UserShiftService service;
 
-    @AfterClass
-    public static void printResult() {
-        log.info("\n---------------------------------" +
-                "\nTest                 Duration, ms" +
-                "\n---------------------------------" +
-                results +
-                "\n---------------------------------");
-    }
-
     @Test
-    public void create() {
+    public void create() throws Exception {
         UserShift created = service.create(getNew(), WAITER1_ID);
         int newId = created.id();
         UserShift newUserShift = getNew();
@@ -79,7 +44,7 @@ public class UserShiftServiceTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() throws Exception {
         service.delete(USER_SHIFT1_ID);
         assertThrows(NotFoundException.class, () -> {
             service.get(USER_SHIFT1_ID);
@@ -94,7 +59,7 @@ public class UserShiftServiceTest {
     }
 
     @Test
-    public void get() {
+    public void get() throws Exception {
         UserShift userShift = service.get(USER_SHIFT1_ID);
         USER_SHIFT_MATCHER.assertMatch(userShift, USER_SHIFT1);
     }
@@ -107,30 +72,10 @@ public class UserShiftServiceTest {
     }
 
     @Test
-    public void getByUserDate() {
-        UserShift userShift = service.getByUserDate(WAITER1_ID, USER_SHIFT1.getStartDateTime().toLocalDate());
-        USER_SHIFT_MATCHER.assertMatch(userShift, USER_SHIFT1);
-    }
-
-    @Test
-    public void getByUserDateNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.getByUserDate(NOT_FOUND,USER_SHIFT1.getStartDateTime().toLocalDate());
-        });
-    }
-
-    @Test
-    public void update() {
+    public void update() throws Exception {
         UserShift updated = getUpdated();
         service.update(updated, WAITER1_ID);
         USER_SHIFT_MATCHER.assertMatch(service.get(USER_SHIFT4_ID), updated);
-    }
-
-    @Test
-    public void updateNotOwnOrManager() {
-        assertThrows(AccessException.class, () -> {
-            service.update(getUpdated(), WAITER2_ID);
-        });
     }
 
     @Test
@@ -143,5 +88,5 @@ public class UserShiftServiceTest {
     public void getAllByUser() {
         USER_SHIFT_MATCHER.assertMatch(service.getAllByUser(WAITER1_ID),
                 USER_SHIFT1, USER_SHIFT4);
-    }
+    }*/
 }

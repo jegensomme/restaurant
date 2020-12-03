@@ -5,11 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.jegensomme.restaurant_service_system.model.Order;
-import ru.jegensomme.restaurant_service_system.model.Role;
-import ru.jegensomme.restaurant_service_system.model.User;
+import ru.jegensomme.restaurant_service_system.model.OrderDish;
+import ru.jegensomme.restaurant_service_system.model.OrderStatus;
+import ru.jegensomme.restaurant_service_system.repository.OrderDishRepository;
 import ru.jegensomme.restaurant_service_system.repository.OrderRepository;
-import ru.jegensomme.restaurant_service_system.repository.UserRepository;
 import ru.jegensomme.restaurant_service_system.util.ValidationUtil;
+import ru.jegensomme.restaurant_service_system.util.exception.CreateException;
+import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -17,37 +19,46 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OrderService {
 
-    private OrderRepository repository;
-    private UserRepository userRepository;
+    private final OrderRepository repository;
+
+    private final OrderDishRepository orderDishRepository;
 
     @Autowired
-    public OrderService(OrderRepository repository, UserRepository userRepository) {
+    public OrderService(OrderRepository repository, OrderDishRepository orderDishRepository) {
         this.repository = repository;
-        this.userRepository = userRepository;
+        this.orderDishRepository = orderDishRepository;
     }
 
     @Transactional
-    public Order create(Order order, int userId) {
+    public Order create(Order order, int userId) throws CreateException {
         Assert.notNull(order, "order must not be null");
-        return repository.save(order, userId);
+        order = ValidationUtil.checkCreated(repository.save(order, userId), Order.class);
+        for (OrderDish dish : order.getDishes()) {
+            ValidationUtil.checkCreated(orderDishRepository.save(dish), OrderDish.class);
+        }
+        return order;
     }
 
     @Transactional
-    public void delete(int id, int userId) {
-        checkAccess(userId);
+    public void delete(int id) throws NotFoundException {
         ValidationUtil.checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Transactional
-    public void update(Order order, int userId) {
-        if (order.getUser().id() != userId) {
-            checkAccess(userId);
-        }
+    public void update(Order order, int userId) throws NotFoundException {
         Assert.notNull(order, "order must not be null");
         ValidationUtil.checkNotFoundWithId(repository.save(order, userId), order.id());
     }
 
-    public Order get(int id) {
+    @Transactional
+    public void updateWithContent(Order order, int userId) throws NotFoundException {
+        update(order, userId);
+        for (OrderDish dish : order.getDishes()) {
+            ValidationUtil.checkNotFoundWithId(orderDishRepository.save(dish), order.id());
+        }
+    }
+
+    public Order get(int id) throws NotFoundException {
         return ValidationUtil.checkNotFoundWithId(repository.get(id), id);
     }
 
@@ -59,8 +70,16 @@ public class OrderService {
         return repository.getAllByUser(userId);
     }
 
-    private void checkAccess(int userId) {
-        User user = ValidationUtil.checkNotFoundWithId(userRepository.get(userId), userId);
-        ValidationUtil.checkAccess(!user.getRoles().contains(Role.MANAGER), userId);
+    public List<Order> getAllOpened() {
+        return repository.getAllOpened();
     }
+
+    public List<Order> getAllOpenedByUser(int userId) {
+        return repository.getAllOpenedByUser(userId);
+    }
+
+    public List<Order> getAllByUserShiftStatus(int userShiftId, OrderStatus status) {
+        return repository.getAllByUserShiftStatus(userShiftId, status);
+    }
+
 }

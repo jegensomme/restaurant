@@ -5,9 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.HomePaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.HomePaneController">
     <children>
-        <BorderPane layoutY="3.0" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <bottom>
                 <BorderPane prefHeight="136.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                     <center>
@@ -21,12 +21,12 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="startShiftButton" mnemonicParsing="false" onAction="#startShift" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Открыть личную смену" GridPane.columnIndex="1">
+                                <Button fx:id="startShiftButton" mnemonicParsing="false" onAction="#onStartShiftClick" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Открыть личную смену" GridPane.columnIndex="1">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="endShiftButton" disable="true" mnemonicParsing="false" onAction="#endShift" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Закрыть личную смену" GridPane.columnIndex="2">
+                                <Button fx:id="endShiftButton" disable="true" mnemonicParsing="false" onAction="#onEndShiftClick" prefHeight="60.0" prefWidth="260.0" style="-fx-border-width: 2; -fx-border-color: #696969;" text="Закрыть личную смену" GridPane.columnIndex="2">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
@@ -37,7 +37,7 @@
                 </BorderPane>
             </bottom>
             <top>
-                <GridPane prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,34 +46,148 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                             <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" HBox.hgrow="NEVER" />
                                 <TextField fx:id="nameTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="5.0" visible="false" />
                                 <TextField fx:id="roleTextField" editable="false" prefHeight="50.0" prefWidth="280.0" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <children>
-                                <Button fx:id="ordersButton" mnemonicParsing="false" onAction="#toOrders" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Заказы">
+                                <Button fx:id="openOrdersButton" mnemonicParsing="false" onAction="#onOpenOrdersClick" prefHeight="60.0" prefWidth="196.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Заказы">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="lockButton" mnemonicParsing="false" onAction="#lock" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
+                                <Button fx:id="lockButton" mnemonicParsing="false" onAction="#onLockClick" prefHeight="60.0" prefWidth="151.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="Блокировка">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Button>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="10.0" visible="false" />
                             </children>
                         </HBox>
                     </children>
                 </GridPane>
             </top>
-         <left>
-            <ListView fx:id="shiftListView" prefHeight="598.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-         </left>
          <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="761.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                           <children>
+                              <TableView fx:id="orderInfoTable" prefHeight="392.0" prefWidth="803.0" style="-fx-background-color: #DCDCDC;" BorderPane.alignment="CENTER">
+                                <columns>
+                                    <TableColumn fx:id="orderIdColumn" minWidth="0.0" prefWidth="279.0" sortable="false" text="id" visible="false" />
+                                  <TableColumn fx:id="orderDateTimeColumn" minWidth="0.0" prefWidth="279.0" sortable="false" text="Дата и время" />
+                                    <TableColumn fx:id="orderTableColumn" minWidth="0.0" prefWidth="169.0" sortable="false" text="Номер стола" />
+                                    <TableColumn fx:id="orderCostColumn" minWidth="0.0" prefWidth="187.0" text="Сумма чека" />
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="shiftInfoTable" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onShiftInfoClicked" prefHeight="377.0" prefWidth="803.0" style="-fx-background-color: #DCDCDC;">
+                                 <columns>
+                                    <TableColumn fx:id="shiftIdColumn" minWidth="0.0" prefWidth="77.0" text="id" visible="false" />
+                                    <TableColumn fx:id="shiftDateColumn" minWidth="0.0" prefWidth="237.0" text="Дата" />
+                                    <TableColumn fx:id="shiftStartTimeColumn" minWidth="0.0" prefWidth="245.0" sortable="false" text="Начало смены" />
+                                    <TableColumn fx:id="shiftEndTimeColumn" minWidth="0.0" prefWidth="237.0" sortable="false" text="Конец смены" />
+                                    <TableColumn fx:id="shiftTotalColumn" maxWidth="492.0" minWidth="0.0" prefWidth="289.0" text="Итог" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </center>
+                     <top>
+                        <GridPane alignment="CENTER" maxHeight="-Infinity" prefHeight="60.0" prefWidth="803.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="803.0">
+                                 <children>
+                                    <Pane layoutX="222.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="53.0" prefWidth="26.0" />
+                                    <ComboBox fx:id="filterBox" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Pane maxHeight="-Infinity" prefHeight="53.0" prefWidth="26.0" />
+                                    <Button fx:id="acceptFilterButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAcceptFilter" prefHeight="47.0" prefWidth="139.0" text="Применить">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Pane maxWidth="-Infinity" prefHeight="60.0" prefWidth="25.0" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="271.0">
+                                       <children>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="43.0" prefWidth="80.0" text="Итог: ">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="totalSalesField" editable="false" prefHeight="28.0" prefWidth="136.0">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label contentDisplay="CENTER" layoutX="118.0" layoutY="16.0" prefHeight="43.0" prefWidth="57.0" text=" руб">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </top>
+                     <bottom>
+                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="803.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Pane maxWidth="-Infinity" prefHeight="62.0" prefWidth="32.0" />
+                              <CheckBox fx:id="customFilterCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCustomFilterCheckBox" prefHeight="69.0" prefWidth="206.0" text="Задать вручную" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </CheckBox>
+                              <HBox fx:id="customFilterBox" disable="true">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="90.0" prefWidth="232.0">
+                                       <children>
+                                          <Label text="От даты включая">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="startDatePicker" prefHeight="29.0" prefWidth="174.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="42.0" layoutY="10.0" prefHeight="90.0" prefWidth="232.0">
+                                       <children>
+                                          <Label text="До даты включая">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="endDatePicker" prefHeight="29.0" prefWidth="174.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </center>
+               <left>
+                  <Pane maxWidth="-Infinity" prefHeight="490.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Pane maxWidth="-Infinity" prefHeight="200.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
+               </right></BorderPane>
          </center>
         </BorderPane>
     </children>

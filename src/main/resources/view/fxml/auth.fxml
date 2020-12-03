@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.controller.panecontroller.AuthPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.AuthPaneController">
     <children>
       <HBox prefHeight="794.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,12 +19,12 @@
                         <HBox prefHeight="111.0" prefWidth="646.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                  <Button id="turnOffButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#turnOff" prefHeight="71.0" prefWidth="330.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Выключить терминал" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                  <Button id="turnOffButton" fx:id="turnOffButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onTurnOff" prefHeight="71.0" prefWidth="330.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Выключить терминал" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                       <font>
                                           <Font size="22.0" />
                                       </font>
                                   </Button>
-                              <Button id="turnOffButton" layoutX="182.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#enter" prefHeight="79.0" prefWidth="194.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Войти" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button id="turnOffButton" fx:id="authButton" layoutX="182.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAuth" prefHeight="79.0" prefWidth="194.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Войти" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -62,57 +63,57 @@
                                     <Insets right="1.0" top="1.0" />
                                 </padding>
                                 <children>
-                                    <Button id="sevenButton" fx:id="print7Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="100.0" prefWidth="110.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="sevenButton" fx:id="print7Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="100.0" prefWidth="110.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="eightButton" fx:id="print8Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="eightButton" fx:id="print8Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="fourButton" fx:id="print4Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="fourButton" fx:id="print4Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="fiveButton" fx:id="print5Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="fiveButton" fx:id="print5Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="oneButton" fx:id="print1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="oneButton" fx:id="print1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="twoButton" fx:id="print2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="twoButton" fx:id="print2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="nineButton" fx:id="print9Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="nineButton" fx:id="print9Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="sixButton" fx:id="print6Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="sixButton" fx:id="print6Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="threeButton" fx:id="print3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="threeButton" fx:id="print3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="zeroButton" fx:id="print0Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="zeroButton" fx:id="print0Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
                                     </Button>
-                                    <Button id="xButton" fx:id="cancelButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                    <Button id="xButton" fx:id="cancelButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPressKeyBoard" prefHeight="104.0" prefWidth="104.0" style="-fx-border-color: #696969; -fx-border-width: 2;" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                         <font>
                                             <Font size="41.0" />
                                         </font>
