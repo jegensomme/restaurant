@@ -3,9 +3,7 @@ package ru.jegensomme.restaurant_service_system.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import ru.jegensomme.restaurant_service_system.model.DishCategory;
-import ru.jegensomme.restaurant_service_system.util.JpaUtil;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 
 import java.util.Collections;
@@ -15,16 +13,9 @@ import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestD
 
 public class DishCategoryServiceTest extends AbstractServiceTest {
 
-    @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
-    protected JpaUtil jpaUtil;
-
     @Before
     public void setUp() {
-        cacheManager.getCache("dish_categories").clear();
-        jpaUtil.clear2ndLevelHibernateCache();
+        clearCache("dish_categories");
     }
 
     @Autowired
@@ -43,16 +34,12 @@ public class DishCategoryServiceTest extends AbstractServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(DISH_CATEGORY1_ID);
-        assertThrows(NotFoundException.class, () -> {
-            service.get(DISH_CATEGORY1_ID);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(DISH_CATEGORY1_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.delete(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
     @Test
@@ -63,9 +50,7 @@ public class DishCategoryServiceTest extends AbstractServiceTest {
 
     @Test
     public void getNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.get(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
     }
 
     @Test
@@ -82,6 +67,7 @@ public class DishCategoryServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void getAllByCategory() {
         DISH_CATEGORY_MATCHER.assertMatch(service.getAllByCategory(DISH_CATEGORY1_ID), Collections.EMPTY_LIST);
     }

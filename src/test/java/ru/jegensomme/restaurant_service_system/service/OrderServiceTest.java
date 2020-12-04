@@ -3,12 +3,7 @@ package ru.jegensomme.restaurant_service_system.service;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.jegensomme.restaurant_service_system.model.Order;
-import ru.jegensomme.restaurant_service_system.model.OrderDish;
-import ru.jegensomme.restaurant_service_system.testdata.OrderDishTestData;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.Assert.assertThrows;
 

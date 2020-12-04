@@ -3,29 +3,20 @@ package ru.jegensomme.restaurant_service_system.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import ru.jegensomme.restaurant_service_system.model.Dish;
 
 import java.util.Collections;
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY1_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.DishTestData.*;
 
-import ru.jegensomme.restaurant_service_system.util.JpaUtil;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 import static org.junit.Assert.assertThrows;
 
 public class DishServiceTest extends AbstractServiceTest {
 
-    @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
-    protected JpaUtil jpaUtil;
-
     @Before
     public void setUp() {
-        cacheManager.getCache("dishes").clear();
-        jpaUtil.clear2ndLevelHibernateCache();
+        clearCache("dishes");
     }
 
     @Autowired
@@ -44,16 +35,12 @@ public class DishServiceTest extends AbstractServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(DISH1_ID);
-        assertThrows(NotFoundException.class, () -> {
-            service.get(DISH1_ID);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(DISH1_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.delete(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
     @Test
@@ -64,9 +51,7 @@ public class DishServiceTest extends AbstractServiceTest {
 
     @Test
     public void getNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.get(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
     }
 
     @Test
@@ -88,6 +73,7 @@ public class DishServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void getAllTop() {
         DISH_MATCHER.assertMatch(service.getAllTop(), Collections.EMPTY_LIST);
     }

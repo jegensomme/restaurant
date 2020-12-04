@@ -28,16 +28,12 @@ public class UserShiftServiceTest extends AbstractServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(USER_SHIFT1_ID);
-        assertThrows(NotFoundException.class, () -> {
-            service.get(USER_SHIFT1_ID);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(USER_SHIFT1_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.delete(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
     @Test
@@ -48,9 +44,7 @@ public class UserShiftServiceTest extends AbstractServiceTest {
 
     @Test
     public void getNotFound() {
-        assertThrows(NotFoundException.class, () -> {
-            service.get(NOT_FOUND);
-        });
+        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
     }
 
     @Test

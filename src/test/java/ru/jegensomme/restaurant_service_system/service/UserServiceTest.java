@@ -3,11 +3,9 @@ package ru.jegensomme.restaurant_service_system.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import ru.jegensomme.restaurant_service_system.model.Role;
 import ru.jegensomme.restaurant_service_system.model.User;
-import ru.jegensomme.restaurant_service_system.util.JpaUtil;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 
 import static org.junit.Assert.assertThrows;
@@ -17,16 +15,9 @@ import static ru.jegensomme.restaurant_service_system.testdata.UserShiftTestData
 
 public class UserServiceTest extends AbstractServiceTest {
 
-    @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
-    protected JpaUtil jpaUtil;
-
     @Before
     public void setUp() {
-        cacheManager.getCache("users").clear();
-        jpaUtil.clear2ndLevelHibernateCache();
+        clearCache("users");
     }
 
     @Autowired

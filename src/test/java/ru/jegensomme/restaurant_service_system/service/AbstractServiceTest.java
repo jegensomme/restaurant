@@ -5,11 +5,15 @@ import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.jegensomme.restaurant_service_system.TimingRules;
+import ru.jegensomme.restaurant_service_system.util.JpaUtil;
 
 import static org.junit.Assert.assertThrows;
 import static ru.jegensomme.restaurant_service_system.util.ValidationUtil.getRootCause;
@@ -30,7 +34,6 @@ abstract public class AbstractServiceTest {
     @Rule
     public Stopwatch stopwatch = TimingRules.STOPWATCH;
 
-    //  Check root cause in JUnit: https://github.com/junit-team/junit4/pull/778
     public <T extends Throwable> void validateRootCause(Runnable runnable, Class<T> rootExceptionClass) {
         assertThrows(rootExceptionClass, () -> {
             try {
@@ -39,5 +42,19 @@ abstract public class AbstractServiceTest {
                 throw getRootCause(e);
             }
         });
+    }
+
+    @Autowired
+    protected JpaUtil jpaUtil;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    public void clearCache(String cacheName) {
+        Cache cache = cacheManager.getCache(cacheName);
+        if (cache != null) {
+            cache.clear();
+        }
+        jpaUtil.clear2ndLevelHibernateCache();
     }
 }
