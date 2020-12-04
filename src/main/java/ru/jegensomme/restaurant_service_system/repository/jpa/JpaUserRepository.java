@@ -81,7 +81,7 @@ public class JpaUserRepository implements UserRepository {
         return em.createNativeQuery("select u.*, ur.role from users u" +
                 " left join user_roles ur on u.id = ur.user_id" +
                 " left join user_shifts us on u.id = us.user_id" +
-                " where us.date=:date" +
+                " where us.date=:date and us.end_time is null" +
                 " order by u.name", User.class).
                 setParameter("date", date).
                 getResultList();

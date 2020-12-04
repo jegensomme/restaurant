@@ -6,14 +6,7 @@ delete from orders;
 delete from tables;
 delete from users;
 delete from user_shifts;
---drop owned by user_waiter;
---drop owned by user_manager;
---drop user user_manager;
---drop user user_waiter;
 alter sequence global_seq restart with 10000;
-
---create user user_waiter with role waiter password 'password';
---create user user_manager with role manager password 'password';
 
 insert into users (key, name) values ('0000', 'Скоморохова Анна');   --10000
 insert into users (key, name) values ('1111', 'Иванов Виктор');      --10001

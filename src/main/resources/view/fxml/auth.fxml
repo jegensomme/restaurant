@@ -6,25 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.AuthPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.AuthPaneController">
     <children>
-      <HBox prefHeight="794.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="794.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane prefHeight="800.0" prefWidth="643.0" HBox.hgrow="ALWAYS" />
-            <BorderPane prefHeight="800.0" prefWidth="834.0" style="-fx-background-color: #696969;" HBox.hgrow="ALWAYS">
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="834.0" style="-fx-background-color: #696969;" HBox.hgrow="ALWAYS">
                <bottom>
-                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="133.0" prefWidth="646.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane prefHeight="101.0" prefWidth="646.0" VBox.vgrow="NEVER" />
-                        <HBox prefHeight="111.0" prefWidth="646.0">
+                        <Pane prefHeight="56.0" prefWidth="1100.0" VBox.vgrow="NEVER" />
+                        <HBox prefHeight="99.0" prefWidth="1100.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                  <Button id="turnOffButton" fx:id="turnOffButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onTurnOff" prefHeight="71.0" prefWidth="330.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Выключить терминал" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                  <Button id="turnOffButton" fx:id="turnOffButton" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onTurnOff" prefHeight="63.0" prefWidth="263.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Выключить терминал" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                       <font>
                                           <Font size="22.0" />
                                       </font>
                                   </Button>
-                              <Button id="turnOffButton" fx:id="authButton" layoutX="182.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAuth" prefHeight="79.0" prefWidth="194.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Войти" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Pane maxWidth="-Infinity" prefHeight="56.0" prefWidth="25.0" />
+                              <Button id="turnOffButton" fx:id="authButton" layoutX="182.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onAuth" prefHeight="63.0" prefWidth="143.0" style="-fx-background-color: #A9A9A9; -fx-border-color: #696969; -fx-border-width: 2;" text="Войти" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -37,9 +37,9 @@
                   </VBox>
                </bottom>
                <center>
-                  <VBox alignment="CENTER" prefHeight="505.0" prefWidth="511.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="550.0" prefWidth="646.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="78.0" prefWidth="698.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                               <PasswordField fx:id="passwordField" prefHeight="79.0" prefWidth="450.0" />
@@ -47,7 +47,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="11.0" prefWidth="511.0" VBox.vgrow="NEVER" />
-                            <GridPane fx:id="keyboardPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="364.0">
+                            <GridPane fx:id="keyboardPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="417.0" prefWidth="373.0">
                                 <columnConstraints>
                                     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
                                     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
@@ -124,7 +124,7 @@
                   </VBox>
                </center>
                <top>
-                  <Pane prefHeight="52.0" prefWidth="511.0" BorderPane.alignment="CENTER" />
+                  <Pane prefHeight="7.0" prefWidth="646.0" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
          </children>

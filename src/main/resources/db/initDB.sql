@@ -8,10 +8,6 @@ drop table if exists tables;
 drop table if exists user_shifts;
 drop table if exists users;
 drop sequence if exists global_seq;
-drop owned by waiter;
-drop owned by manager;
-drop role if exists waiter;
-drop role if exists manager;
 
 create sequence global_seq start with 10000;
 

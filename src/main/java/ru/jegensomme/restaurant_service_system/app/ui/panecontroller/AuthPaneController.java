@@ -59,7 +59,7 @@ public class AuthPaneController extends AbstractPaneController {
             } else {
                 SecurityUtil.setAuthUserRole(user.getRoles().contains(Role.MANAGER) ? Role.MANAGER : Role.WAITER);
             }
-            userController.authUser();
+            //userController.authUser();
             logger.info("authorised {}", user.getId());
             stageLoader.setPane("home");
             homePaneController.init(user);

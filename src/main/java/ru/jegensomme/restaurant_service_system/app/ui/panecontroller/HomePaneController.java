@@ -309,7 +309,7 @@ public class HomePaneController extends AuthorisedPaneController {
             LocalDateTime startDateTime = LocalDateTime.now();
             if (userShiftController.create(new UserShift(null, startDateTime.toLocalDate(),
                     startDateTime.toLocalTime(), null)) == null) {
-                AlertUtil.inform("Не удалось открыть смену!", Alert.AlertType.ERROR);
+                AlertUtil.inform("Не удалось открыть смену!", Alert.AlertType.WARNING);
                 return;
             }
             updateCurrentShift();

@@ -5,13 +5,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.HomePaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.jegensomme.restaurant_service_system.app.ui.panecontroller.HomePaneController">
     <children>
-        <BorderPane layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutY="3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <bottom>
-                <BorderPane prefHeight="136.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="136.0" prefWidth="1100.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                     <center>
-                        <GridPane style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                             <columnConstraints>
                                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,7 +37,7 @@
                 </BorderPane>
             </bottom>
             <top>
-                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="1100.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -76,7 +76,7 @@
          <center>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <center>
-                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="761.0" BorderPane.alignment="CENTER">
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="874.0" BorderPane.alignment="CENTER">
                      <center>
                         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                            <children>
@@ -191,7 +191,7 @@
                </right></BorderPane>
          </center>
          <left>
-            <BorderPane fx:id="waitersPane" disable="true" prefHeight="598.0" prefWidth="206.0" BorderPane.alignment="CENTER">
+            <BorderPane fx:id="waitersPane" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="598.0" prefWidth="212.0" BorderPane.alignment="CENTER">
                <center>
                   <ListView fx:id="waitersListView" onMouseClicked="#waitersOnClick" prefHeight="457.0" prefWidth="252.0" BorderPane.alignment="CENTER" />
                </center>
