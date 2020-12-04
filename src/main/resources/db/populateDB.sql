@@ -176,7 +176,7 @@ insert into orders (user_id, date_time, table_id, check_amount, status) --10089
     values (10002, '2020-10-10 13:00:00', 10067, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10090
-    values (10089, 10028, 1, 'comment');
+    values (10089, 10020, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10091
     values (10089, 10024, 1, 'comment');
 
@@ -186,7 +186,7 @@ insert into orders (user_id, date_time, table_id, check_amount, status) --10092
 insert into order_dishes (order_id, dish_id, amount, comment)   --10093
     values (10092, 10030, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10094
-    values (10092, 10038, 1, 'comment');
+    values (10092, 10022, 1, 'comment');
 ----------------------------------------------------------------
 -----------------------------------------------------------------------------
 
@@ -211,7 +211,7 @@ insert into orders (user_id, date_time, table_id, check_amount, status) --10101
     values (10001, '2020-10-20 20:00:00', 10069, 600, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10102
-    values (10101, 10030, 1, 'comment');
+    values (10101, 10025, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10103
     values (10101, 10038, 1, 'comment');
 --------------------------------------------------------------------
@@ -221,7 +221,7 @@ insert into orders (user_id, date_time, table_id, check_amount, status) --10104
     values (10002, '2020-10-20 13:00:00', 10067, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10105
-    values (10104, 10028, 1, 'comment');
+    values (10104, 10025, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10106
     values (10104, 10024, 1, 'comment');
 
@@ -239,15 +239,15 @@ insert into order_dishes (order_id, dish_id, amount, comment)   --10109
 -------------------------------НОЯБРЬ----------------------------------------
 ----------------------10 Ноября---------------------------------------------
 insert into user_shifts (user_id, date, start_time, end_time)   --10110
-    values (10000, '2020-11-10', '09:00:00', '21:00:00');
+    values (10003, '2020-11-10', '09:00:00', '21:00:00');
 insert into user_shifts (user_id, date, start_time, end_time)   --10111
-    values (10001, '2020-11-10', '11:00:00', '23:00:00');
+    values (10004, '2020-11-10', '11:00:00', '23:00:00');
 insert into user_shifts (user_id, date, start_time, end_time)   --10112
-    values (10002, '2020-11-10', '11:00:00', '23:00:00');
+    values (10000, '2020-11-10', '11:00:00', '23:00:00');
 
 ------------Иванов Виктор---------------------------------------------
 insert into orders (user_id, date_time, table_id, check_amount, status) --10113
-    values (10001, '2020-11-10 12:00:00', 10064, 750, 'CLOSED');
+    values (10003, '2020-11-10 12:00:00', 10064, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10114
     values (10113, 10028, 1, 'comment');
@@ -255,25 +255,25 @@ insert into order_dishes (order_id, dish_id, amount, comment)   --10115
     values (10113, 10024, 1, 'comment');
 
 insert into orders (user_id, date_time, table_id, check_amount, status) --10116
-    values (10001, '2020-11-10 20:00:00', 10069, 600, 'CLOSED');
+    values (10003, '2020-11-10 20:00:00', 10069, 600, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10117
-    values (10116, 10030, 1, 'comment');
+    values (10116, 10052, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10118
     values (10116, 10038, 1, 'comment');
 ----------------------------------------------------------------------------
 
 ------------Сидельников Федер---------------------------------------------
 insert into orders (user_id, date_time, table_id, check_amount, status) --10119
-    values (10002, '2020-11-10 13:00:00', 10067, 750, 'CLOSED');
+    values (10004, '2020-11-10 13:00:00', 10067, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10120
     values (10119, 10028, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10121
-    values (10119, 10024, 1, 'comment');
+    values (10119, 10063, 1, 'comment');
 
 insert into orders (user_id, date_time, table_id, check_amount, status) --10122
-    values (10002, '2020-11-10 22:00:00', 10075, 600, 'CLOSED');
+    values (10004, '2020-11-10 22:00:00', 10075, 600, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10123
     values (10122, 10030, 1, 'comment');
@@ -284,46 +284,230 @@ insert into order_dishes (order_id, dish_id, amount, comment)   --10124
 
 ----------------------20 Ноября---------------------------------------------
 insert into user_shifts (user_id, date, start_time, end_time)   --10125
-    values (10000, '2020-11-20', '09:00:00', '21:00:00');
+    values (10003, '2020-11-20', '09:00:00', '21:00:00');
 insert into user_shifts (user_id, date, start_time, end_time)   --10126
-    values (10001, '2020-11-20', '11:00:00', '23:00:00');
+    values (10004, '2020-11-20', '11:00:00', '23:00:00');
 insert into user_shifts (user_id, date, start_time, end_time)   --10127
-    values (10002, '2020-11-20', '11:00:00', '23:00:00');
+    values (10000, '2020-11-20', '11:00:00', '23:00:00');
 
 ------------Иванов Виктор---------------------------------------------
 insert into orders (user_id, date_time, table_id, check_amount, status) --10128
-    values (10001, '2020-11-20 12:00:00', 10064, 750, 'CLOSED');
+    values (10003, '2020-11-20 12:00:00', 10064, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10129
-    values (10128, 10028, 1, 'comment');
+    values (10128, 10057, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10130
     values (10128, 10024, 1, 'comment');
 
 insert into orders (user_id, date_time, table_id, check_amount, status) --10131
-    values (10001, '2020-11-20 20:00:00', 10069, 600, 'CLOSED');
+    values (10003, '2020-11-20 20:00:00', 10069, 600, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10132
-    values (10131, 10030, 1, 'comment');
+    values (10131, 10061, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10133
     values (10131, 10038, 1, 'comment');
 --------------------------------------------------------------------
 
 ------------Сидельников Федер-----------------------------------
 insert into orders (user_id, date_time, table_id, check_amount, status) --10134
-    values (10002, '2020-11-20 13:00:00', 10067, 750, 'CLOSED');
+    values (10004, '2020-11-20 13:00:00', 10067, 750, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10135
     values (10134, 10028, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10136
-    values (10134, 10024, 1, 'comment');
+    values (10134, 10056, 1, 'comment');
 
 insert into orders (user_id, date_time, table_id, check_amount, status) --10137
-    values (10002, '2020-11-20 22:00:00', 10075, 600, 'CLOSED');
+    values (10004, '2020-11-20 22:00:00', 10075, 600, 'CLOSED');
 
 insert into order_dishes (order_id, dish_id, amount, comment)   --10138
     values (10137, 10030, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)   --10139
-    values (10137, 10038, 1, 'comment');
+    values (10137, 10054, 1, 'comment');
+----------------------------------------------------------------
+------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+-------------------------------ДЕКАБРЬ-------------------------------
+----------------------1 Декабря---------------------------------------------
+insert into user_shifts (user_id, date, start_time, end_time)   --10080
+values (10005, '2020-12-1', '09:00:00', '21:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10081
+values (10006, '2020-12-1', '11:00:00', '23:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10082
+values (10000, '2020-12-1', '11:00:00', '23:00:00');
+
+------------Иванов Виктор---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10083
+values (10005, '2020-12-1 12:00:00', 10064, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10084
+values (10083, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10085
+values (10083, 10060, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10086
+values (10005, '2020-12-1 20:00:00', 10069, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10087
+values (10086, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10088
+values (10086, 10059, 1, 'comment');
+----------------------------------------------------------------------------
+
+------------Сидельников Федер---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10089
+values (10006, '2020-12-1 13:00:00', 10067, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10090
+values (10089, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10091
+values (10089, 10056, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10092
+values (10006, '2020-12-1 22:00:00', 10075, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10093
+values (10092, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10094
+values (10092, 10038, 1, 'comment');
+----------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+----------------------2 Декабря---------------------------------------------
+insert into user_shifts (user_id, date, start_time, end_time)   --10095
+values (10005, '2020-12-2', '09:00:00', '21:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10096
+values (10006, '2020-12-2', '11:00:00', '23:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10097
+values (10000, '2020-12-2', '11:00:00', '23:00:00');
+
+------------Иванов Виктор---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10098
+values (10005, '2020-12-2 12:00:00', 10064, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10099
+values (10098, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10100
+values (10098, 10024, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10101
+values (10005, '2020-12-2 20:00:00', 10069, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10102
+values (10101, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10103
+values (10101, 10038, 1, 'comment');
+--------------------------------------------------------------------
+
+------------Сидельников Федер-----------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10104
+values (10006, '2020-12-2 13:00:00', 10067, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10105
+values (10104, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10106
+values (10104, 10059, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10107
+values (10006, '2020-12-2 22:00:00', 10075, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10108
+values (10107, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10109
+values (10107, 10038, 1, 'comment');
+----------------------------------------------------------------
+------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+-------------------------------СЕНТЯБРЬ-------------------------------
+----------------------10 Октября---------------------------------------------
+insert into user_shifts (user_id, date, start_time, end_time)   --10110
+values (10007, '2020-09-10', '09:00:00', '21:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10111
+values (10008, '2020-09-10', '11:00:00', '23:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10112
+values (10010, '2020-09-10', '11:00:00', '23:00:00');
+
+------------Иванов Виктор---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10113
+values (10007, '2020-09-10 12:00:00', 10064, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10114
+values (10113, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10115
+values (10113, 10059, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10116
+values (10007, '2020-09-10 20:00:00', 10069, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10117
+values (10116, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10118
+values (10116, 10038, 1, 'comment');
+----------------------------------------------------------------------------
+
+------------Сидельников Федер---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10119
+values (10008, '2020-09-10 13:00:00', 10067, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10120
+values (10119, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10121
+values (10119, 10024, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10122
+values (10008, '2020-09-10 22:00:00', 10075, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10123
+values (10122, 10056, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10124
+values (10122, 10038, 1, 'comment');
+----------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+----------------------20 Октября---------------------------------------------
+insert into user_shifts (user_id, date, start_time, end_time)   --10125
+values (10007, '2020-09-20', '09:00:00', '21:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10126
+values (10008, '2020-09-20', '11:00:00', '23:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)   --10127
+values (10010, '2020-09-20', '11:00:00', '23:00:00');
+
+------------Иванов Виктор---------------------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10128
+values (10007, '2020-09-20 12:00:00', 10064, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10129
+values (10128, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10130
+values (10128, 10024, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10131
+values (10007, '2020-09-20 20:00:00', 10069, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10132
+values (10131, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10133
+values (10131, 10038, 1, 'comment');
+--------------------------------------------------------------------
+
+------------Сидельников Федер-----------------------------------
+insert into orders (user_id, date_time, table_id, check_amount, status) --10134
+values (10008, '2020-09-20 13:00:00', 10067, 750, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10135
+values (10134, 10028, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10136
+values (10134, 10024, 1, 'comment');
+
+insert into orders (user_id, date_time, table_id, check_amount, status) --10137
+values (10008, '2020-09-20 22:00:00', 10075, 600, 'CLOSED');
+
+insert into order_dishes (order_id, dish_id, amount, comment)   --10138
+values (10137, 10030, 1, 'comment');
+insert into order_dishes (order_id, dish_id, amount, comment)   --10139
+values (10137, 10038, 1, 'comment');
 ----------------------------------------------------------------
 ------------------------------------------------------------------------
 -----------------------------------------------------------------------------

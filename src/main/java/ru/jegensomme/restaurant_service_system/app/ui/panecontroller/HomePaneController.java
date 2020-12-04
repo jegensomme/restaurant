@@ -309,7 +309,7 @@ public class HomePaneController extends AuthorisedPaneController {
             LocalDateTime startDateTime = LocalDateTime.now();
             if (userShiftController.create(new UserShift(null, startDateTime.toLocalDate(),
                     startDateTime.toLocalTime(), null)) == null) {
-                AlertUtil.inform("Не удалось открыть смену!", Alert.AlertType.WARNING);
+                AlertUtil.inform("Не удалось открыть смену!\nВозможно вы уже открывали сегодня смену", Alert.AlertType.WARNING);
                 return;
             }
             updateCurrentShift();
@@ -328,6 +328,13 @@ public class HomePaneController extends AuthorisedPaneController {
 
     private void endShift() {
         AccessUtil.performIfAccess(() -> {
+            List<Order> openedOrders = orderController.getAllOpenedByUser(user.id());
+            if (!openedOrders.isEmpty()) {
+                if (!AlertUtil.confirm("У вас осталось " + openedOrders.size() +
+                        " открытых заказов!\nВы уверены, что хотите закрыть смену?")) {
+                    return;
+                }
+            }
             LocalDateTime endDateTime = LocalDateTime.now();
             currentShift.setEndTime(endDateTime.toLocalTime());
             userShiftController.update(currentShift, SecurityUtil.authUserId());
