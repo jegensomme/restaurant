@@ -102,9 +102,9 @@ public class OrderController {
         return service.getAllOpenedByUser(userId);
     }
 
-    public List<Order> getAllByUserShiftStatus(int userShiftId, OrderStatus status) {
-        logger.info("Order: getAllByUserShiftStatus with userShiftId={} with status={} for {}",
-                userShiftId, status, SecurityUtil.authUserId());
-        return service.getAllByUserShiftStatus(userShiftId, status);
+    public List<Order> getAllByUserShift(int userShiftId) {
+        logger.info("Order: getAllByUserShift with userShiftId={} for {}",
+                userShiftId, SecurityUtil.authUserId());
+        return service.getAllByUserShift(userShiftId);
     }
 }

@@ -63,7 +63,7 @@
                            </font>
                         </Button>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="15.0" HBox.hgrow="NEVER" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="60.0" prefWidth="265.0" text="Быстрый поиск">
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="60.0" prefWidth="265.0" text="Быстрый поиск" visible="false">
                            <font>
                               <Font size="21.0" />
                            </font>

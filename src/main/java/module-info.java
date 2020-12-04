@@ -1,6 +1,9 @@
 open module ru.jegensomme.restaurant_service_system {
+
+    requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
+
     requires spring.beans;
     requires spring.context;
     requires org.slf4j;
@@ -37,5 +40,4 @@ open module ru.jegensomme.restaurant_service_system {
     exports ru.jegensomme.restaurant_service_system.service;
     exports ru.jegensomme.restaurant_service_system.repository;
     exports ru.jegensomme.restaurant_service_system.repository.jpa;
-    exports ru.jegensomme.restaurant_service_system.repository.jpa.nativesql;
 }

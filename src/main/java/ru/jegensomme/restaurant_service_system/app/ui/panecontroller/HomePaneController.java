@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.jegensomme.restaurant_service_system.app.controller.OrderController;
+import ru.jegensomme.restaurant_service_system.app.controller.UserController;
 import ru.jegensomme.restaurant_service_system.app.controller.UserShiftController;
 import ru.jegensomme.restaurant_service_system.app.ui.panecontroller.view.OrderView;
 import ru.jegensomme.restaurant_service_system.app.ui.panecontroller.view.UserShiftView;
@@ -16,8 +18,10 @@ import ru.jegensomme.restaurant_service_system.app.ui.util.AccessUtil;
 import ru.jegensomme.restaurant_service_system.app.ui.util.EventUtil;
 import ru.jegensomme.restaurant_service_system.app.ui.util.modal.AlertUtil;
 import ru.jegensomme.restaurant_service_system.app.util.SecurityUtil;
+import ru.jegensomme.restaurant_service_system.app.util.to.UserTo;
+import ru.jegensomme.restaurant_service_system.app.util.to.util.UserUtil;
 import ru.jegensomme.restaurant_service_system.model.Order;
-import ru.jegensomme.restaurant_service_system.model.OrderStatus;
+import ru.jegensomme.restaurant_service_system.model.Role;
 import ru.jegensomme.restaurant_service_system.model.User;
 import ru.jegensomme.restaurant_service_system.model.UserShift;
 import ru.jegensomme.restaurant_service_system.util.DateTimeUtil;
@@ -39,6 +43,9 @@ public class HomePaneController extends AuthorisedPaneController {
 
     @Autowired
     private OrderController orderController;
+
+    @Autowired
+    private UserController userController;
 
     @Autowired
     private OrdersPaneController ordersPaneController;
@@ -118,6 +125,9 @@ public class HomePaneController extends AuthorisedPaneController {
     private TableColumn<OrderView, Integer> orderCostColumn;
 
     @FXML
+    private TableColumn<OrderView, Integer> orderStatusColumn;
+
+    @FXML
     private TableView<UserShiftView> shiftInfoTable;
 
     @FXML
@@ -135,6 +145,14 @@ public class HomePaneController extends AuthorisedPaneController {
     @FXML
     private TableColumn<UserShiftView, Integer> shiftTotalColumn;
 
+    @FXML
+    private BorderPane waitersPane;
+
+    @FXML
+    private ListView<UserTo> waitersListView;
+
+    private UserTo selectedUser;
+
     @Override
     public void init(User user) {
         super.init(user);
@@ -142,8 +160,21 @@ public class HomePaneController extends AuthorisedPaneController {
         initShiftInfoTable();
         initOrderInfoTable();
         customFilter = false;
+        initWaitersListView();
         updateCurrentShift();
         updateShiftInfoTable();
+    }
+
+    private void initWaitersListView() {
+        if (SecurityUtil.authUserRole() == Role.MANAGER) {
+            waitersPane.setDisable(false);
+            List<UserTo> userTos = UserUtil.getTos(userController.getAllByRole(Role.WAITER));
+            waitersListView.setItems(FXCollections.observableList(userTos));
+            selectedUser = null;
+        } else {
+            selectedUser = UserUtil.createTo(user);
+            waitersListView.setItems(FXCollections.observableArrayList(selectedUser));
+        }
     }
 
     private void initFilterBox() {
@@ -169,6 +200,7 @@ public class HomePaneController extends AuthorisedPaneController {
         orderDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("dateTime"));
         orderTableColumn.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
         orderCostColumn.setCellValueFactory(new PropertyValueFactory<>("checkAmount"));
+        orderStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     @FXML
@@ -183,6 +215,21 @@ public class HomePaneController extends AuthorisedPaneController {
                 return;
             }
         }
+        updateShiftInfoTable();
+    }
+
+    @FXML
+    private void waitersOnClick(MouseEvent mouseEvent) {
+        if (!EventUtil.MouseEventUtil.isDoubleClick(mouseEvent)) {
+            return;
+        }
+        selectedUser = waitersListView.getSelectionModel().getSelectedItem();
+        updateShiftInfoTable();
+    }
+
+    @FXML
+    private void onForAllClick() {
+        selectedUser = null;
         updateShiftInfoTable();
     }
 
@@ -205,21 +252,19 @@ public class HomePaneController extends AuthorisedPaneController {
             List<UserShiftView> shiftViews = new ArrayList<>();
             List<UserShift> shifts;
             double totalSales = 0;
-            if (customFilter) {
-                shifts = userShiftController.getBetweenInclusiveByUser(user.id(), startDateFilter, endDateFilter);
-            } else {
+            if (!customFilter) {
                 LocalDate now = LocalDate.now();
+                endDateFilter = DateTimeUtil.MAX;
                 switch (filterBox.getValue()) {
-                    case WEEK -> shifts = userShiftController.getBetweenInclusiveByUser(user.id(),
-                                now.minusDays(now.getDayOfWeek().getValue() - 1), DateTimeUtil.MAX);
-                    case MONTH -> shifts = userShiftController.getBetweenInclusiveByUser(user.id(),
-                            LocalDate.of(now.getYear(), now.getMonth(), 1), DateTimeUtil.MAX);
-                    case YEAR -> shifts = userShiftController.getBetweenInclusiveByUser(user.id(),
-                            LocalDate.of(now.getYear(), Month.JANUARY, 1), DateTimeUtil.MAX);
-                    default -> shifts = userShiftController.getBetweenInclusiveByUser(user.id(),
-                            LocalDate.now(), DateTimeUtil.MAX);
+                    case WEEK -> startDateFilter = now.minusDays(now.getDayOfWeek().getValue() - 1);
+                    case MONTH -> startDateFilter = LocalDate.of(now.getYear(), now.getMonth(), 1);
+                    case YEAR -> startDateFilter = LocalDate.of(now.getYear(), Month.JANUARY, 1);
+                    default -> startDateFilter = LocalDate.now();
                 }
             }
+            shifts = selectedUser == null ?
+                    userShiftController.getBetweenInclusive(startDateFilter, endDateFilter) :
+                    userShiftController.getBetweenInclusiveByUser(selectedUser.getId(), startDateFilter, endDateFilter);
             for (UserShift shift : shifts) {
                 Float sales = userShiftController.getTotalSalesByUserShift(shift.id(), shift.getUser().id());
                 shiftViews.add(new UserShiftView(shift.id(), shift.getDate(),
@@ -228,15 +273,16 @@ public class HomePaneController extends AuthorisedPaneController {
             }
             shiftInfoTable.setItems(FXCollections.observableList(shiftViews));
             totalSalesField.setText(Double.toString(totalSales));
+            orderInfoTable.getItems().clear();
         }, () -> AlertUtil.inform("Отсутствует доступ!", Alert.AlertType.WARNING));
-        orderInfoTable.getItems().clear();
     }
 
     private void updateOrderInfoTable() {
         UserShiftView selected = shiftInfoTable.getSelectionModel().getSelectedItem();
-        List<Order> orders = orderController.getAllByUserShiftStatus(selected.getId(), OrderStatus.CLOSED);
+        List<Order> orders = orderController.getAllByUserShift(selected.getId());
         orderInfoTable.setItems(FXCollections.observableList(orders.stream().
-                map(order -> new OrderView(order.id(), order.getDateTime(), order.getTable().getNumber(), order.getCheckAmount())).
+                map(order -> new OrderView(order.id(), order.getDateTime(),
+                        order.getTable().getNumber(), order.getCheckAmount(), order.getStatus().toStringRus())).
                 collect(Collectors.toList())));
     }
 

@@ -78,8 +78,8 @@ public class OrderService {
         return repository.getAllOpenedByUser(userId);
     }
 
-    public List<Order> getAllByUserShiftStatus(int userShiftId, OrderStatus status) {
-        return repository.getAllByUserShiftStatus(userShiftId, status);
+    public List<Order> getAllByUserShift(int userShiftId) {
+        return repository.getAllByUserShift(userShiftId);
     }
 
 }

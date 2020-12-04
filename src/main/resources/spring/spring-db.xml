@@ -18,7 +18,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="ru.jegensomme.restaurant_service_system.repository.jpa.nativesql"/>
+    <context:component-scan base-package="ru.jegensomme.restaurant_service_system.repository.jpa"/>
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"

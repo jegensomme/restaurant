@@ -57,6 +57,10 @@ public class UserShiftService {
         return repository.getOpenedByUser(userId);
     }
 
+    public List<UserShift> getBetweenInclusive(LocalDate startDate, LocalDate endDate) {
+        return repository.getBetweenInclusive(startDate, endDate);
+    }
+
     public List<UserShift> getBetweenInclusiveByUser(int userId, LocalDate startDate, LocalDate endDate) {
         return repository.getBetweenInclusiveByUser(userId, startDate, endDate);
     }

@@ -1,5 +1,6 @@
 package ru.jegensomme.restaurant_service_system.repository.jpa;
 
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import ru.jegensomme.restaurant_service_system.model.OrderDish;
 import ru.jegensomme.restaurant_service_system.repository.OrderDishRepository;
@@ -32,12 +33,26 @@ public class JpaOrderDishRepository implements OrderDishRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public OrderDish get(int id) {
-        return null;
+        List<OrderDish> result = em.createNativeQuery("select * from order_dishes od" +
+                " left join dishes d on d.id = od.dish_id" +
+                " left join orders o on o.id = od.order_id" +
+                " where od.id=:id", OrderDish.class).
+                setParameter("id", id).
+                getResultList();
+        return DataAccessUtils.singleResult(result);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<OrderDish> getAll(int orderId) {
-        return null;
+        return em.createNativeQuery("select * from order_dishes od" +
+                " left join dishes d on d.id = od.dish_id" +
+                " left join orders o on o.id = od.order_id" +
+                " where o.id=:order_id" +
+                " order by od.id", OrderDish.class).
+                setParameter("order_id", orderId).
+                getResultList();
     }
 }

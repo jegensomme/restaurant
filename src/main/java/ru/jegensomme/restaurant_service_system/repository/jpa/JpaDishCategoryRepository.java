@@ -1,5 +1,6 @@
 package ru.jegensomme.restaurant_service_system.repository.jpa;
 
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import ru.jegensomme.restaurant_service_system.model.DishCategory;
 import ru.jegensomme.restaurant_service_system.repository.DishCategoryRepository;
@@ -32,22 +33,39 @@ public class JpaDishCategoryRepository implements DishCategoryRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public DishCategory get(int id) {
-        return null;
+        List<DishCategory> result = em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
+                " where d.id=:id", DishCategory.class).
+                setParameter("id", id).
+                getResultList();
+        return DataAccessUtils.singleResult(result);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DishCategory> getAll() {
-        return null;
+        return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
+                " order by d.name", DishCategory.class).
+                getResultList();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DishCategory> getAllByCategory(int categoryId) {
-        return null;
+        return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
+                " where d.category_id=:category_id" +
+                " order by d.category_id, d.name", DishCategory.class).
+                setParameter("category_id", categoryId).
+                getResultList();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DishCategory> getAllTop() {
-        return null;
+        return em.createNativeQuery("select *, 0 clazz_ from dish_categories d" +
+                " where d.category_id is null" +
+                " order by d.name", DishCategory.class).
+                getResultList();
     }
 }

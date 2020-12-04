@@ -1,9 +1,7 @@
 package ru.jegensomme.restaurant_service_system.repository;
 
 import ru.jegensomme.restaurant_service_system.model.Order;
-import ru.jegensomme.restaurant_service_system.model.OrderStatus;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository {
@@ -22,5 +20,5 @@ public interface OrderRepository {
 
     List<Order> getAllOpenedByUser(int userId);
 
-    List<Order> getAllByUserShiftStatus(int userShiftId, OrderStatus status);
+    List<Order> getAllByUserShift(int userShiftId);
 }

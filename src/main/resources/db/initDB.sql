@@ -28,8 +28,8 @@ create table user_roles
 (
     user_id integer not null,
     role    varchar not null,
-    constraint user_roles_unique_idx unique (user_id, role),
-    foreign key (user_id) references users (id) on delete cascade
+    foreign key (user_id) references users (id) on delete cascade,
+    primary key (user_id, role)
 );
 
 create table user_shifts
@@ -49,7 +49,7 @@ create table dish_categories
     id          integer primary key default nextval('global_seq'),
     name        varchar not null,
     category_id integer,
-    foreign key (category_id) references dish_categories (id) on delete cascade
+    foreign key (category_id) references dish_categories (id) on delete set null
 );
 
 create index dish_categories_category_id_idx on dish_categories (category_id);
@@ -60,7 +60,7 @@ create table dishes
     name        varchar not null,
     category_id integer,
     cost        real not null default 0 check ( cost >= 0 ),
-    foreign key (category_id) references dish_categories (id) on delete cascade
+    foreign key (category_id) references dish_categories (id) on delete set null
 );
 
 create index dishes_category_id_idx on dishes (category_id);
@@ -86,8 +86,6 @@ create table orders
     foreign key (table_id) references tables (id) on delete set null
 );
 
-create index orders_user_id_date_time_idx on orders (user_id, date_time);
-
 create table order_dishes
 (
     id       integer primary key default nextval('global_seq'),
@@ -98,6 +96,8 @@ create table order_dishes
     foreign key (order_id) references orders (id) on delete cascade,
     foreign key (dish_id)  references dishes (id) on delete set null
 );
+
+create index order_dishes_idx on order_dishes (order_id);
 
 create role manager with createrole login password 'password';
 create role waiter with login password 'password';

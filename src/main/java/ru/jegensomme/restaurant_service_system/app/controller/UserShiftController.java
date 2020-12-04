@@ -82,6 +82,13 @@ public class UserShiftController {
         return service.getOpenedByUser(userId);
     }
 
+    public List<UserShift> getBetweenInclusive(LocalDate startDate, LocalDate endDate) throws AccessException {
+        logger.info("UserShift: getBetweenInclusive" +
+                " with startDate={} with endDate={} for {}", startDate, endDate, SecurityUtil.authUserId());
+        SecurityUtil.checkManagerAccess();
+        return service.getBetweenInclusive(startDate, endDate);
+    }
+
     public List<UserShift> getBetweenInclusiveByUser(int userId, LocalDate startDate, LocalDate endDate) throws AccessException {
         logger.info("UserShift: getBetweenInclusiveByUser with userId={}" +
                 " with startDate={} with endDate={} for {}", userId, startDate, endDate, SecurityUtil.authUserId());

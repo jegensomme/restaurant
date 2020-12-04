@@ -83,18 +83,19 @@
                               <TableView fx:id="orderInfoTable" prefHeight="392.0" prefWidth="803.0" style="-fx-background-color: #DCDCDC;" BorderPane.alignment="CENTER">
                                 <columns>
                                     <TableColumn fx:id="orderIdColumn" minWidth="0.0" prefWidth="279.0" sortable="false" text="id" visible="false" />
-                                  <TableColumn fx:id="orderDateTimeColumn" minWidth="0.0" prefWidth="279.0" sortable="false" text="Дата и время" />
-                                    <TableColumn fx:id="orderTableColumn" minWidth="0.0" prefWidth="169.0" sortable="false" text="Номер стола" />
-                                    <TableColumn fx:id="orderCostColumn" minWidth="0.0" prefWidth="187.0" text="Сумма чека" />
+                                  <TableColumn fx:id="orderDateTimeColumn" minWidth="0.0" prefWidth="279.0" text="Дата и время" />
+                                    <TableColumn fx:id="orderTableColumn" minWidth="0.0" prefWidth="182.0" sortable="false" text="Номер стола" />
+                                    <TableColumn fx:id="orderCostColumn" minWidth="0.0" prefWidth="201.0" text="Сумма чека" />
+                                    <TableColumn fx:id="orderStatusColumn" minWidth="0.0" prefWidth="180.0" sortable="false" text="Статус" />
                                 </columns>
                               </TableView>
                               <TableView fx:id="shiftInfoTable" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onShiftInfoClicked" prefHeight="377.0" prefWidth="803.0" style="-fx-background-color: #DCDCDC;">
                                  <columns>
                                     <TableColumn fx:id="shiftIdColumn" minWidth="0.0" prefWidth="77.0" text="id" visible="false" />
                                     <TableColumn fx:id="shiftDateColumn" minWidth="0.0" prefWidth="237.0" text="Дата" />
-                                    <TableColumn fx:id="shiftStartTimeColumn" minWidth="0.0" prefWidth="245.0" sortable="false" text="Начало смены" />
-                                    <TableColumn fx:id="shiftEndTimeColumn" minWidth="0.0" prefWidth="237.0" sortable="false" text="Конец смены" />
-                                    <TableColumn fx:id="shiftTotalColumn" maxWidth="492.0" minWidth="0.0" prefWidth="289.0" text="Итог" />
+                                    <TableColumn fx:id="shiftStartTimeColumn" minWidth="0.0" prefWidth="210.0" sortable="false" text="Начало смены" />
+                                    <TableColumn fx:id="shiftEndTimeColumn" minWidth="0.0" prefWidth="219.0" sortable="false" text="Конец смены" />
+                                    <TableColumn fx:id="shiftTotalColumn" maxWidth="492.0" minWidth="0.0" prefWidth="207.0" text="Итог" />
                                  </columns>
                               </TableView>
                            </children>
@@ -189,6 +190,42 @@
                   <Pane maxWidth="-Infinity" prefHeight="200.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
                </right></BorderPane>
          </center>
+         <left>
+            <BorderPane fx:id="waitersPane" disable="true" prefHeight="598.0" prefWidth="206.0" BorderPane.alignment="CENTER">
+               <center>
+                  <ListView fx:id="waitersListView" onMouseClicked="#waitersOnClick" prefHeight="457.0" prefWidth="252.0" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="257.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane maxWidth="-Infinity" prefHeight="200.0" prefWidth="40.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="196.0" text="Официанты">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane maxWidth="-Infinity" prefHeight="100.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+               </top>
+               <left>
+                  <Pane maxWidth="-Infinity" prefHeight="494.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+               </left>
+               <bottom>
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="257.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane maxWidth="-Infinity" prefHeight="100.0" prefWidth="40.0" />
+                        <Button fx:id="forAllButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onForAllClick" prefHeight="23.0" prefWidth="139.0" text="Для всех">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Pane layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="100.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </left>
         </BorderPane>
     </children>
 </AnchorPane>

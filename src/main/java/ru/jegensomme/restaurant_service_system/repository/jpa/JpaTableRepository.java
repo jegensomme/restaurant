@@ -1,5 +1,6 @@
 package ru.jegensomme.restaurant_service_system.repository.jpa;
 
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import ru.jegensomme.restaurant_service_system.model.Table;
 import ru.jegensomme.restaurant_service_system.repository.TableRepository;
@@ -32,12 +33,20 @@ public class JpaTableRepository implements TableRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Table get(int id) {
-        return null;
+        List<Table> result = em.createNativeQuery("select * from tables t" +
+                " where t.id=:id", Table.class).
+                setParameter("id", id).
+                getResultList();
+        return DataAccessUtils.singleResult(result);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Table> getAll() {
-        return null;
+        return em.createNativeQuery("select * from tables t" +
+                " order by t.number", Table.class).
+                getResultList();
     }
 }

@@ -3,6 +3,7 @@ package ru.jegensomme.restaurant_service_system.app.ui.panecontroller.view;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDateTime;
 
@@ -16,11 +17,14 @@ public class OrderView {
 
     SimpleDoubleProperty checkAmount;
 
-    public OrderView(int id, LocalDateTime dateTime, int tableNumber, double checkAmount) {
+    SimpleStringProperty status;
+
+    public OrderView(int id, LocalDateTime dateTime, Integer tableNumber, double checkAmount, String status) {
         this.id = new SimpleIntegerProperty(id);
         this.dateTime = new SimpleObjectProperty<>(dateTime);
         this.tableNumber = new SimpleIntegerProperty(tableNumber);
         this.checkAmount = new SimpleDoubleProperty(checkAmount);
+        this.status = new SimpleStringProperty(status);
     }
 
     public int getId() {
@@ -69,5 +73,17 @@ public class OrderView {
 
     public void setCheckAmount(double checkAmount) {
         this.checkAmount.set(checkAmount);
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public SimpleStringProperty statusProperty() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
     }
 }

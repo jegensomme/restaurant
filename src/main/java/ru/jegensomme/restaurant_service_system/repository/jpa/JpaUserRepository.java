@@ -34,27 +34,56 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public User get(int id) {
-        return null;
+        List<User> result = em.createNativeQuery("select * from users u" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " where u.id=:id", User.class).
+                setParameter("id", id).
+                getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public User getByKey(String key) {
-        return null;
+        List<User> result = em.createNativeQuery("select u.*, role from users u" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " where key=:key", User.class).
+                setParameter("key", key).
+                getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> getAll() {
-        return null;
+        return em.createNativeQuery("select * from users u" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " order by ur.role, u.name", User.class).
+                getResultList();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> getAllByRole(Role role) {
-        return null;
+        return em.createNativeQuery("select * from users u" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " where ur.role=:role" +
+                " order by u.name", User.class).
+                setParameter("role", role.toString()).
+                getResultList();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> getAllByShiftDate(LocalDate date) {
-        return null;
+        return em.createNativeQuery("select u.*, ur.role from users u" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " left join user_shifts us on u.id = us.user_id" +
+                " where us.date=:date" +
+                " order by u.name", User.class).
+                setParameter("date", date).
+                getResultList();
     }
 }
