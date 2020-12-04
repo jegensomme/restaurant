@@ -45,6 +45,16 @@ public class JpaOrderRepository implements OrderRepository {
     }
 
     @Override
+    public Order getWithContent(int id) {
+        List<Order> result = em.createNativeQuery("select * from orders o" +
+                " left join order_dishes od on o.id = od.order_id" +
+                " where o.id=:id", Order.class).
+                setParameter("id", id).
+                getResultList();
+        return DataAccessUtils.singleResult(result);
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<Order> getAll() {
         return em.createNativeQuery("select * from orders o" +

@@ -112,7 +112,6 @@ grant insert on table user_shifts, orders, order_dishes to waiter;
 
 grant update on table user_shifts to waiter;
 grant update on table orders to waiter;
-grant update on table order_dishes to waiter;
 grant update on table users to waiter;
 
 
@@ -127,7 +126,6 @@ grant insert on table users, user_shifts, user_roles, tables, order_dishes, dish
 grant update on table user_shifts to manager;
 grant update on table tables to manager;
 grant update on table orders to manager;
-grant update on table order_dishes to manager;
 grant update on table dishes to manager;
 grant update on table dish_categories to manager;
 grant update on table users to manager;

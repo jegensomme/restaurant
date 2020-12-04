@@ -205,6 +205,10 @@ public class HomePaneController extends AuthorisedPaneController {
 
     @FXML
     private void onAcceptFilter() {
+        setFilter();
+    }
+
+    private void setFilter() {
         if (customFilter) {
             startDateFilter = startDatePicker.getValue() == null ? DateTimeUtil.MIN : startDatePicker.getValue();
             endDateFilter = endDatePicker.getValue() == null ? DateTimeUtil.MAX : endDatePicker.getValue();
@@ -224,13 +228,13 @@ public class HomePaneController extends AuthorisedPaneController {
             return;
         }
         selectedUser = waitersListView.getSelectionModel().getSelectedItem();
-        updateShiftInfoTable();
+        setFilter();
     }
 
     @FXML
     private void onForAllClick() {
         selectedUser = null;
-        updateShiftInfoTable();
+        setFilter();
     }
 
     @FXML

@@ -46,7 +46,7 @@ public class Order extends AbstractBaseEntity {
     @Range(min = 0)
     private double checkAmount = 0;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderDish> dishes = Collections.EMPTY_LIST;
 
     public Order() {

@@ -62,6 +62,10 @@ public class OrderService {
         return ValidationUtil.checkNotFoundWithId(repository.get(id), id);
     }
 
+    public Order getWithContent(int id) throws NotFoundException {
+        return ValidationUtil.checkNotFoundWithId(repository.getWithContent(id), id);
+    }
+
     public List<Order> getAll() {
         return repository.getAll();
     }

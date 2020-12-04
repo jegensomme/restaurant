@@ -12,6 +12,8 @@ public interface OrderRepository {
 
     Order get(int id);
 
+    Order getWithContent(int id) ;
+
     List<Order> getAll();
 
     List<Order> getAllByUser(int userId);

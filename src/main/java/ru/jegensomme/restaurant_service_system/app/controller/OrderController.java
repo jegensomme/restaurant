@@ -82,6 +82,15 @@ public class OrderController {
         }
     }
 
+    public Order getWithContent(int id) {
+        logger.info("Order: getWithContent with id={} for {}", id, SecurityUtil.authUserId());
+        try {
+            return service.getWithContent(id);
+        } catch (NotFoundException e) {
+            return null;
+        }
+    }
+
     public List<Order> getAll() {
         logger.info("Order: getAll for {}", SecurityUtil.authUserId());
         return service.getAll();

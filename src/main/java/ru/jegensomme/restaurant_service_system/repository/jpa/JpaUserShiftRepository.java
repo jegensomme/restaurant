@@ -83,8 +83,10 @@ public class JpaUserShiftRepository implements UserShiftRepository {
     @Override
     @SuppressWarnings("unchecked")
     public List<UserShift> getBetweenInclusive(LocalDate startDate, LocalDate endDate) {
-        return em.createNativeQuery("select * from user_shifts us" +
-                " where us.date>=:start_date and us.date<=:end_date" +
+        return em.createNativeQuery("select us.* from user_shifts us" +
+                " left join users u on us.user_id = u.id" +
+                " left join user_roles ur on u.id = ur.user_id" +
+                " where us.date>=:start_date and us.date<=:end_date and role='WAITER'" +
                 " order by us.date", UserShift.class).
                 setParameter("start_date", startDate).
                 setParameter("end_date", endDate).
