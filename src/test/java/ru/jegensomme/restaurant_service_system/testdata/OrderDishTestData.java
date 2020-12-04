@@ -2,7 +2,7 @@ package ru.jegensomme.restaurant_service_system.testdata;
 
 import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.OrderDish;
-/*
+
 import static ru.jegensomme.restaurant_service_system.model.AbstractBaseEntity.START_SEQ;
 import static ru.jegensomme.restaurant_service_system.testdata.OrderTestData.ORDER1;
 import static ru.jegensomme.restaurant_service_system.testdata.OrderTestData.ORDER2;
@@ -49,4 +49,4 @@ public class OrderDishTestData {
         return updated;
     }
 
-}*/
+}

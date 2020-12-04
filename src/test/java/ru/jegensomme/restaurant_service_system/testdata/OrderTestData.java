@@ -1,5 +1,5 @@
 package ru.jegensomme.restaurant_service_system.testdata;
-/*
+
 import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.Order;
 import ru.jegensomme.restaurant_service_system.model.OrderStatus;
@@ -28,23 +28,23 @@ public class OrderTestData {
 
     public static Order ORDER1 = new Order(ORDER1_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 10, 10, 0),
-            TABLE1, OrderStatus.PROCESSING, 0);
+            TABLE1, OrderStatus.PROCESSING);
 
     public static Order ORDER2 = new Order(ORDER2_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 10, 12, 0),
-            TABLE2, OrderStatus.CLOSED, 0);
+            TABLE2, OrderStatus.CLOSED);
 
     public static Order ORDER3 = new Order(ORDER3_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 11, 10, 0),
-            TABLE3, OrderStatus.CLOSED, 0);
+            TABLE3, OrderStatus.CLOSED);
     public static Order ORDER4 = new Order(ORDER4_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 11, 12, 0),
-            TABLE4, OrderStatus.PROCESSING, 0);
+            TABLE4, OrderStatus.PROCESSING);
 
     public static Order getNew() {
         return new Order(null,
                 LocalDateTime.of(2020, Month.OCTOBER, 12, 10, 0),
-                TABLE1, OrderStatus.PROCESSING, 0);
+                TABLE1, OrderStatus.PROCESSING);
     }
 
     public static Order getUpdated() {
@@ -54,4 +54,3 @@ public class OrderTestData {
     }
 
 }
-*/

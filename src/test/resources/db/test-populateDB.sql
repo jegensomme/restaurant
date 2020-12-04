@@ -1,6 +1,4 @@
 delete from order_dishes;
-delete from dish_modifiers;
-delete from modifiers;
 delete from dishes;
 delete from dish_categories;
 delete from user_roles;
@@ -8,14 +6,7 @@ delete from orders;
 delete from tables;
 delete from users;
 delete from user_shifts;
-drop owned by user_waiter;
-drop owned by user_manager;
-drop user user_waiter;
-drop user user_manager;
 alter sequence global_seq restart with 10000;
-
-create user user_waiter with role waiter password 'password';
-create user user_manager with role manager password 'password';
 
 insert into users (key, name) values (1111, 'Waiter1');       --10000 Waiter1
 insert into users (key, name) values (2222, 'Manager');       --10001 Manager
@@ -69,24 +60,20 @@ values (10016, 10007, 1, 'comment');
 insert into order_dishes (order_id, dish_id, amount, comment)       --10024 Order4 Dish4
 values (10016, 10008, 1, 'comment');
 
-insert into modifiers (name, min_value, max_value) values ('DishModifier1', 1, 10);       --10025 DishModifier1
-insert into modifiers (name, min_value, max_value) values ('DishModifier2', 1, 10);       --10026 DishModifier2
+insert into user_shifts (user_id, date, start_time, end_time)       -- 100025 UserShift1 Waiter1
+values (10000, '2020-10-10', '09:00:00', '21:00:00');
 
-insert into dish_modifiers (dish_id, modifier_id) values (10005, 10025);      -- Dish1 DishModifier1
-insert into dish_modifiers (dish_id, modifier_id) values (10006, 10026);      -- Dish2 DishModifier2
-insert into dish_modifiers (dish_id, modifier_id) values (10007, 10025);      -- Dish3 DishModifier1
-insert into dish_modifiers (dish_id, modifier_id) values (10008, 10026);      -- Dish4 DishModifier2
+insert into user_shifts (user_id, date, start_time, end_time)       -- 100026 UserShift2 Manager
+values (10001, '2020-10-10',  '11:00:00', '23:00:00');
 
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100027 UserShift1 Waiter1
-values (10000, '2020-10-10 09:00:00', '2020-10-10 21:00:00');
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100028 UserShift2 Manager
-values (10001, '2020-10-10 11:00:00', '2020-10-10 23:00:00');
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100029 UserShift3 Waiter2
-values (10002, '2020-10-10 11:00:00', '2020-10-10 23:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)        -- 100027 UserShift3 Waiter2
+values (10002, '2020-10-10', '11:00:00', '23:00:00');
 
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100030 UserShift4 Waiter1
-values (10000, '2020-10-11 11:00:00', null);
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100031 UserShift5 Manager
-values (10001, '2020-10-11 11:00:00', '2020-11-10 23:00:00');
-insert into user_shifts (user_id, start_date_time, end_date_time)       -- 100032 UserShift6 Waiter2
-values (10002, '2020-10-11 09:00:00', '2020-11-10 21:00:00');
+insert into user_shifts (user_id, date, start_time, end_time)        -- 100028 UserShift4 Waiter1
+values (10000, '2020-10-11', '11:00:00', null);
+
+insert into user_shifts (user_id, date, start_time, end_time)        -- 100029 UserShift5 Manager
+values (10001, '2020-10-11', '11:00:00', '23:00:00');
+
+insert into user_shifts (user_id, date, start_time, end_time)        -- 100030 UserShift6 Waiter2
+values (10002, '2020-10-11', '09:00:00', '21:00:00');

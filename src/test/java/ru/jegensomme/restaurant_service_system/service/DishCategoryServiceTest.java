@@ -2,7 +2,6 @@ package ru.jegensomme.restaurant_service_system.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import ru.jegensomme.restaurant_service_system.model.DishCategory;
@@ -15,7 +14,7 @@ import static org.junit.Assert.assertThrows;
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.*;
 
 public class DishCategoryServiceTest extends AbstractServiceTest {
-/*
+
     @Autowired
     private CacheManager cacheManager;
 
@@ -91,5 +90,5 @@ public class DishCategoryServiceTest extends AbstractServiceTest {
     public void getAllTop() {
         DISH_CATEGORY_MATCHER.assertMatch(service.getAllTop(),
                 DISH_CATEGORY1, DISH_CATEGORY2);
-    }*/
+    }
 }

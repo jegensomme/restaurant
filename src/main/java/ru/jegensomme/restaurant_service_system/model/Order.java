@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @NamedQueries({
@@ -45,8 +46,8 @@ public class Order extends AbstractBaseEntity {
     @Range(min = 0)
     private double checkAmount = 0;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDish> dishes;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<OrderDish> dishes = Collections.EMPTY_LIST;
 
     public Order() {
     }

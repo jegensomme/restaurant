@@ -1,31 +1,20 @@
 package ru.jegensomme.restaurant_service_system.service;
 
-import org.junit.AfterClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringRunner;
-/*import org.slf4j.bridge.SLF4JBridgeHandler;
 import ru.jegensomme.restaurant_service_system.model.Order;
+import ru.jegensomme.restaurant_service_system.model.OrderDish;
+import ru.jegensomme.restaurant_service_system.testdata.OrderDishTestData;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
-import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertThrows;
-import java.util.concurrent.TimeUnit;
 
 import static ru.jegensomme.restaurant_service_system.testdata.OrderTestData.*;
+import static ru.jegensomme.restaurant_service_system.testdata.UserShiftTestData.USER_SHIFT1_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1_ID;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER2_ID;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER_ID;
-
-import static org.slf4j.LoggerFactory.getLogger;
 
 public class OrderServiceTest extends AbstractServiceTest {
 
@@ -34,8 +23,8 @@ public class OrderServiceTest extends AbstractServiceTest {
 
     @Test
     public void create() throws Exception {
-        Order created = service.create(getNew(), WAITER1_ID);
         Order newOrder = getNew();
+        Order created = service.create(newOrder, WAITER1_ID);
         int newId = created.id();
         newOrder.setId(newId);
         ORDER_MATCHER.assertMatch(created, newOrder);
@@ -80,7 +69,7 @@ public class OrderServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void getAllByWaiter() {
+    public void getAllByUser() {
         ORDER_MATCHER.assertMatch(service.getAllByUser(WAITER1_ID), ORDER1, ORDER3);
     }
 
@@ -88,4 +77,14 @@ public class OrderServiceTest extends AbstractServiceTest {
     public void getAllOpened() {
         ORDER_MATCHER.assertMatch(service.getAllOpened(), ORDER1, ORDER4);
     }
-}*/
+
+    @Test
+    public void getAllOpenedByUser() {
+        ORDER_MATCHER.assertMatch(service.getAllOpenedByUser(WAITER1_ID), ORDER1);
+    }
+
+    @Test
+    public void getAllByUserShift() {
+        ORDER_MATCHER.assertMatch(service.getAllByUserShift(USER_SHIFT1_ID), ORDER1);
+    }
+}

@@ -1,35 +1,16 @@
 package ru.jegensomme.restaurant_service_system.service;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.Rule;
-/*import org.junit.Test;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringRunner;
-import ru.jegensomme.restaurant_service_system.TestMatcher;
 import ru.jegensomme.restaurant_service_system.model.Dish;
 
 import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static org.slf4j.LoggerFactory.getLogger;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.MANAGER_ID;
-import static ru.jegensomme.restaurant_service_system.testdata.UserTestData.WAITER1_ID;
 import static ru.jegensomme.restaurant_service_system.testdata.DishCategoryTestData.DISH_CATEGORY1_ID;
+import static ru.jegensomme.restaurant_service_system.testdata.DishTestData.*;
 
-import ru.jegensomme.restaurant_service_system.model.DishModifier;
 import ru.jegensomme.restaurant_service_system.util.JpaUtil;
-import ru.jegensomme.restaurant_service_system.util.exception.AccessException;
 import ru.jegensomme.restaurant_service_system.util.exception.NotFoundException;
 import static org.junit.Assert.assertThrows;
 
@@ -110,4 +91,4 @@ public class DishServiceTest extends AbstractServiceTest {
     public void getAllTop() {
         DISH_MATCHER.assertMatch(service.getAllTop(), Collections.EMPTY_LIST);
     }
-}*/
+}
