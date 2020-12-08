@@ -95,7 +95,7 @@ create table order_dishes
 
 create index order_dishes_idx on order_dishes (order_id);
 
-create role manager with createrole login password 'password';
+/*create role manager with createrole login password 'password';
 create role waiter with login password 'password';
 
 grant usage on schema public to waiter;
@@ -126,4 +126,4 @@ grant update on table dishes to manager;
 grant update on table dish_categories to manager;
 grant update on table users to manager;
 
-grant delete on table users, user_shifts, user_roles, orders, tables, order_dishes , dishes, dish_categories, tables to manager;
+grant delete on table users, user_shifts, user_roles, orders, tables, order_dishes , dishes, dish_categories, tables to manager;*/
